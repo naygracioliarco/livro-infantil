@@ -42,9 +42,22 @@
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
+  text-transform: uppercase;
+}
+
+/* Garantir todo texto corrido em maiúsculas */
+p,
+li {
+  text-transform: uppercase;
+}
+
+/* Conteúdo do modal do professor deve manter caixa normal */
+.teacher-modal-content p,
+.teacher-modal-content li {
+  text-transform: none;
 }
 
 /* Estilo para bullets coloridos nas subquestões */
 ul.question-subitems li::marker {
-  color: #BF3154;
+  color: #832c87;
 }

@@ -21,7 +21,9 @@ function Chapter({
         </p>
         <h2 className="text-4xl font-hwtArtz font-bold uppercase text-slate-800">{title}</h2>
       </div>
-      <div className="text-slate-700 leading-relaxed text-justify chapter-content">{content}</div>
+      <div className="text-slate-700 leading-relaxed text-justify chapter-content uppercase">
+        {content}
+      </div>
     </section>
   );
 }

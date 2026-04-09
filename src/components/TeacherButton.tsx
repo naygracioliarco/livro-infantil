@@ -21,15 +21,15 @@ function TeacherButton({
                 style={{
                     position: 'relative',
                     padding: '10px 30px 10px 45px',
-                    backgroundColor: '#BF3154',
-                    boxShadow: '0px 4px 0px #9C2F4B',
+                    backgroundColor: '#F26522',
+                    boxShadow: '0px 4px 0px #c64f12',
                     borderRadius: '0 30px 30px 0',
                     color: 'white',
                     fontFamily: 'Ubuntu',
                     fontSize: '12px',
                     fontWeight: 700,
                     lineHeight: '1.4em',
-                    textTransform: 'uppercase',
+                    textTransform: 'none',
                     textDecoration: 'none',
                     margin: '1em 0.4em 1.4em 1.4em',
                     border: 'none',
@@ -39,12 +39,12 @@ function TeacherButton({
                     justifyContent: 'center',
                 }}
                 onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#9C2F4B';
-                    e.currentTarget.style.boxShadow = '0px 2px 0px #7A2440';
+                    e.currentTarget.style.backgroundColor = '#E04F16';
+                    e.currentTarget.style.boxShadow = '0px 2px 0px #b13f11';
                 }}
                 onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#BF3154';
-                    e.currentTarget.style.boxShadow = '0px 4px 0px #9C2F4B';
+                    e.currentTarget.style.backgroundColor = '#F26522';
+                    e.currentTarget.style.boxShadow = '0px 4px 0px #c64f12';
                 }}
             >
                 <div
@@ -56,7 +56,7 @@ function TeacherButton({
                         width: '45px',
                         height: '45px',
                         borderRadius: '50%',
-                        backgroundColor: '#BF3154',
+                        backgroundColor: '#F26522',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -92,8 +92,8 @@ function TeacherButton({
                         )}
 
                         {content && (
-                            <div className="mb-6">
-                                <div className="text-slate-700 prose max-w-none">
+                            <div  className="mb-6">
+                                <div className="text-slate-700 prose max-w-none teacher-modal-content">
                                     {content}
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ function TeacherButton({
                         {answers && (
                             <div>
                                 <h5 className="text-lg font-semibold text-slate-600 mb-3">Respostas:</h5>
-                                <div className="text-slate-700 prose max-w-none">
+                                <div className="text-slate-700 prose max-w-none teacher-modal-content">
                                     {answers}
                                 </div>
                             </div>

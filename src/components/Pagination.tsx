@@ -16,7 +16,7 @@ function Pagination({ currentPage }: PaginationProps) {
         justifyContent: 'center',
         alignItems: 'center',
         gap: '10px',
-        backgroundColor: '#F8B9CB',
+        backgroundColor: '#b797c6',
         marginBottom: '40px',
         marginTop: '40px',
         position: 'relative',

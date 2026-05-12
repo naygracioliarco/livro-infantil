@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import Chapter from './Chapter';
 import DataTable from './DataTable';
@@ -7,7 +7,8 @@ import { chapterQuestions } from '../data/questions';
 import { UserAnswers, Question } from '../types/questions';
 import { loadAnswers, saveAnswers } from '../utils/storage';
 import Pagination from './Pagination';
-import MinhaVersao from './MinhaVersao';
+import ParaFamilia from './ParaFamilia';
+import GatoRatoCornerAnimation from './GatoRatoCornerAnimation';
 import ProducaoTexto from './ProducaoTexto';
 import ProducaoFinal from './ProducaoFinal';
 import ProducaoTextoNoticia from './ProducaoTextoNoticia';
@@ -22,7 +23,9 @@ import TeacherButtonContentHeading from './TeacherButtonContentHeading';
 import BolaDeMeiaQuestion from './BolaDeMeiaQuestion';
 import CabriolaTituloInterativo from './CabriolaTituloInterativo';
 import MatchConnectQuestion, { type MatchConnectItem } from './MatchConnectQuestion';
-
+import ImageFillQuestion, { type ImageFillItem } from './ImageFillQuestion';
+import GameModal from './GameModal';
+import BookPageMode from './BookPageMode';
 const pag16Img = (n: number) => `/images/pag16_img${n}.png`;
 
 const MATCH_PAG16_LEFT: MatchConnectItem[] = [1, 2, 3].map((n) => ({
@@ -39,6 +42,37 @@ const MATCH_PAG16_RIGHT: MatchConnectItem[] = MATCH_PAG16_RIGHT_ORDER.map((imgNu
   imageSrc: pag16Img(imgNum),
   alt: '',
 }));
+
+const FILL_PAG17_ITEMS: ImageFillItem[] = [
+  {
+    id: 'pag17-1',
+    imageSrc: '/images/pag17_img1.png',
+    alt: '',
+    labelPrefix: 'BOLA DE',
+    imageClassName: 'max-h-16 md:max-h-20',
+  },
+  {
+    id: 'pag17-2',
+    imageSrc: '/images/pag17_img2.png',
+    alt: '',
+    labelPrefix: 'BOLA DE',
+    imageClassName: 'max-h-24 md:max-h-32',
+  },
+  {
+    id: 'pag17-3',
+    imageSrc: '/images/pag17_img3.png',
+    alt: '',
+    labelPrefix: 'BOLA DE',
+    imageClassName: 'max-h-28 md:max-h-40',
+  },
+  {
+    id: 'pag17-4',
+    imageSrc: '/images/pag17_img4.png',
+    alt: '',
+    labelPrefix: 'BOLA DE',
+    imageClassName: 'max-h-28 md:max-h-40',
+  },
+];
 
 function Book() {
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({});
@@ -126,10 +160,12 @@ function Book() {
     }, 500);
   };
 
+  const pageContainerRef = useRef<HTMLDivElement>(null);
+
   return (
     <div className="min-h-screen bg-gray-200 w-full">
       <div className="mx-auto bg-white shadow-2xl overflow-hidden" style={{ maxWidth: '63%', marginLeft: 'auto', marginRight: 'auto' }}>
-        <div className="p-8 md:p-12">
+        <div ref={pageContainerRef} className="p-8 md:p-12">
           {/* Paginação */}
           <Pagination currentPage={currentPage} />
           <Pagination currentPage={11} />
@@ -246,7 +282,7 @@ function Book() {
                   <p className="mb-4 indent-6">No <em>link</em>, você encontra a
                     seção “Observação ativa” e outras sugestões para enriquecer
                     a prática pedagógica.</p>
-                  <a href="https://go.sae.digital/OtvnHy">https://go.sae.digital/OtvnHy</a>
+                  <a href="https://go.sae.digital/OtvnHy" target="_blank">https://go.sae.digital/OtvnHy</a>
                 </>
               }
             />
@@ -397,7 +433,7 @@ function Book() {
                   <p className="mb-4 indent-6">No <em>link</em>, você encontra a
                     seção “Observação ativa” e outras sugestões para enriquecer
                     a prática pedagógica.</p>
-                  <a href="https://go.sae.digital/OtvnHy">https://go.sae.digital/OtvnHy</a>
+                  <a href="https://go.sae.digital/OtvnHy" target="_blank">https://go.sae.digital/OtvnHy</a>
                 </>
               }
             />
@@ -439,9 +475,7 @@ function Book() {
             }}
           />
           <DescobertasCard
-            text={`NESTA UNIDADE, VOCE
-VAI CONHECER ALGUMAS
-BRINCADEIRAS TRADICIONAIS
+            text={`NESTA UNIDADE, VOCE VAI CONHECER ALGUMAS BRINCADEIRAS TRADICIONAIS
 E SUAS VARIACOES, ALEM DE
 COMPREENDER AS REGRAS DE
 CADA UMA DELAS. PREPARE-SE
@@ -680,7 +714,7 @@ PARA BRINCAR E SE DIVERTIR!`}
                   <p className="mb-4 indent-6">No <em>link</em>, você encontra a
                     seção “Observação ativa” e outras sugestões para enriquecer
                     a prática pedagógica.</p>
-                  <a href="https://go.sae.digital/OtvnHy">https://go.sae.digital/OtvnHy</a>
+                  <a href="https://go.sae.digital/OtvnHy" target="_blank">https://go.sae.digital/OtvnHy</a>
 
                   <p className="mb-4 indent-6">
                     <strong>Resposta atividade:</strong>
@@ -716,10 +750,10 @@ PARA BRINCAR E SE DIVERTIR!`}
               content={
                 <>
                   <p className="mb-4">
-                  Espera-se que as crianças pintem o título <em>Cabriola, cadê a bola?</em>
+                    Espera-se que as crianças pintem o título <em>Cabriola, cadê a bola?</em>
                   </p>
                   <p className="mb-4">
-                  Espera-se que as crianças contornem a rima <em>Cabriola</em> e <em>bola</em> no título.
+                    Espera-se que as crianças contornem a rima <em>Cabriola</em> e <em>bola</em> no título.
                   </p>
                 </>
               }
@@ -772,8 +806,8 @@ PARA BRINCAR E SE DIVERTIR!`}
           </CaixaTexto>
           <ul className="list-disc marker:text-[#832c87] ml-6">
             <li>PINTE O TÍTULO DA BRINCADEIRA.</li>
-            <li>NO TÍTULO DA BRINCADEIRA TEM UMA RIMA. COM AJUDA DOS 
-            COLEGAS, DESCUBRA A RIMA E FAÇA UM CONTORNO NELA.</li>
+            <li>NO TÍTULO DA BRINCADEIRA TEM UMA RIMA. COM AJUDA DOS
+              COLEGAS, DESCUBRA A RIMA E FAÇA UM CONTORNO NELA.</li>
           </ul>
 
           <Pagination currentPage={16} />
@@ -815,8 +849,8 @@ PARA BRINCAR E SE DIVERTIR!`}
             />
           </div>
           <p className="mb-4 indent-6">
-          LIGUE AS IMAGENS DAS BOLAS AOS JOGOS EM QUE ELAS SÃO 
-          USADAS. DEPOIS, PINTE AS BOLAS COMO DESEJAR. 
+            LIGUE AS IMAGENS DAS BOLAS AOS JOGOS EM QUE ELAS SÃO
+            USADAS. DEPOIS, PINTE AS BOLAS COMO DESEJAR.
           </p>
           <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
           <div className="my-8">
@@ -828,7 +862,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             />
           </div>
 
-          <Pagination currentPage={9} />
+          <Pagination currentPage={17} />
           {/* Conteúdo do botão do professor */}
           <div className="my-6">
             <TeacherButton
@@ -837,231 +871,227 @@ PARA BRINCAR E SE DIVERTIR!`}
                   <p className="mb-3">
                     Respostas:
                   </p>
-                  {(() => {
-                    const question = chapterQuestions.chapter1.find(q => q.id === 'ch1_q5');
-                    if (question && question.type === 'true-false' && question.statements) {
-                      return question.statements.map((stmt) => {
-                        // Se tiver correção, mostra V/F primeiro e depois a correção. Se não, mostra apenas V ou F
-                        const correctAnswerText = stmt.correctAnswer ? 'Verdadeiro (V)' : 'Falso (F)';
-                        const answerText = stmt.correction
-                          ? `${correctAnswerText}. ${stmt.correction}`
-                          : correctAnswerText;
-
-                        return (
-                          <p key={stmt.letter} className="mb-3">
-                            {question.number !== undefined && (
-                              <span style={{ color: '#00776E', fontWeight: 'bold' }}>{question.number}. </span>
-                            )}
-                            <span style={{ color: '#00776E', fontWeight: 'bold' }}>{stmt.letter}) </span>
-                            <span dangerouslySetInnerHTML={{ __html: answerText }} />
-                          </p>
-                        );
-                      });
-                    }
-                    return null;
-                  })()}
-                  {(() => {
-                    const question = chapterQuestions.chapter1.find(q => q.id === 'ch1_q6');
-                    if (question && question.type === 'text-input' && question.subQuestions) {
-                      return question.subQuestions.map((subQ) => (
-                        <p key={subQ.letter} className="mb-3">
-                          {question.number !== undefined && (
-                            <span style={{ color: '#00776E', fontWeight: 'bold' }}>{question.number}. </span>
-                          )}
-                          <span style={{ color: '#00776E', fontWeight: 'bold' }}>{subQ.letter}) </span>
-                          <span dangerouslySetInnerHTML={{ __html: subQ.correctAnswer || '' }} />
-                        </p>
-                      ));
-                    }
-                    return null;
-                  })()}
+                  <p>Bola de tênis</p>
+                  <p>Bola de boliche</p>
+                  <p>Bola de futebol</p>
+                  <p>Bola de basquete</p>
                 </>
               }
 
             />
           </div>
-          <CaixaTexto title=''>
-            <p className="mb-4 indent-6"><strong>Robôs para a vida</strong></p>
-            <p className="mb-4 indent-6">
-              As marcas também vão levar opções de robôs que ajudam no dia a dia (ou simplesmente fazem companhia), como aqueles que cozinham, fazem café, distribuem medicamentos, pintam e jogam basquete, por exemplo.
-            </p>
-            <p className="mb-4 indent-6">
-              No “Robot Mall”, os visitantes podem acessar uma área de entretenimento para assistir esportes robóticos, incluindo futebol e eventos de atletismo. Vale lembrar que a China foi o primeiro país do mundo a criar torneios esportivos para robôs, como a World Robot Soccer League, relatada pelo Olhar Digital.
-            </p>
-            <p className="mb-4 indent-6">
-              O formato da nova loja cria uma experiência de “playground de tecnologia”, bem longe do showroom tradicional: aqui, o público é encorajado a interagir com os produtos. No restaurante do shopping, aliás, garçons robôs servem pratos preparados por… chefs robóticos.
-            </p>
-            <p className="mb-4 indent-6"><strong>O poder da China</strong></p>
-            <p className="mb-4 indent-6">
-              Com esse projeto, a China tira o foco de novidades futuristas e busca normalizar a interação entre humanos e robôs na vida diária [...]. É uma estratégia que posiciona o país não só como fabricante líder, mas também na integração com estilos de vida.
-            </p>
-            <p className="mb-4 indent-6">
-              E isso vem com apoio financeiro. No ano passado, o governo chinês liberou mais de US$ 20 bilhões (R$ 108 bilhões) em subsídios para ajudar startups de inteligência artificial e robótica – e planeja ampliar o fundo para US$ 137 bilhões (R$ 744 bilhões).
-            </p>
-            <p className="mb-4 indent-6">
-              O shopping foi inaugurado na mesma semana em que é realizada a Conferência Mundial de Robôs de 2025, precedendo também os primeiros Jogos Mundiais de Robôs Humanoides, marcados para o período entre 14 e 17 de agosto.
-            </p>
-          </CaixaTexto>
-          <p
-            className="mt-2 mb-6"
-            style={{
-              fontFamily: 'Ubuntu, sans-serif',
-              color: '#000000',
-              fontSize: '10px',
-            }}
-          >
-            BARONE, Bruna. <em>China inaugura o primeiro "shopping de robôs" do mundo.</em> Disponível em: <a href="https://epocanegocios.globo.com/tecnologia/noticia/2025/08/china-inaugura-primeira-loja-que-une-venda-servico-e-pecas-para-robos-humanoides.ghtml" target="_blank" rel="noopener noreferrer">https://epocanegocios.globo.com/tecnologia/noticia/2025/08/china-inaugura-primeira-loja-que-une-venda-servico-e-pecas-para-robos-humanoides.ghtml</a>. Acesso em: 23 set. 2025.
+          <p className="mb-4 indent-6">
+            VOCÊ VIU QUE CADA BRINCADEIRA OU JOGO USA UM TIPO DE BOLA.
           </p>
-          {/* Questão intercalada no conteúdo */}
-          <QuestionRenderer
-            question={chapterQuestions.chapter1[4]}
-            userAnswers={userAnswers}
-            onAnswerChange={handleAnswerChange}
-            showResults={showTeacherView}
-          />
-          {/* Questão intercalada no conteúdo */}
-          <QuestionRenderer
-            question={chapterQuestions.chapter1[5]}
-            userAnswers={userAnswers}
-            onAnswerChange={handleAnswerChange}
-            showResults={showTeacherView}
-          />
-          {/* Botão de download das questões */}
+          <p className="mb-4 indent-6">
+            OBSERVE AS BOLAS E IDENTIFIQUE EM QUAL JOGO ELAS SÃO
+            USADAS. DEPOIS, ESCREVA COMO SOUBER O NOME DO JOGO NOS
+            ESPAÇOS CORRETOS.
+          </p>
+          <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
           <div className="my-6">
-            <DownloadQuestionsButton
-              questions={[chapterQuestions.chapter1[4], chapterQuestions.chapter1[5]]}
-              userAnswers={userAnswers}
-              title="Questões da Página 9"
-              fileName="questoes-pagina-9.pdf"
+            <ImageFillQuestion
+              items={FILL_PAG17_ITEMS}
+              storageKey="livro:preencher-pag17-bolas"
             />
           </div>
-          <Pagination currentPage={10} />
+          <ParaFamilia
+            text="PARA DAR INÍCIO À UNIDADE “AS BRINCADEIRAS E SUAS REGRAS”, AS CRIANÇAS FORAM CONVIDADAS A COMPARTILHAR EXPERIÊNCIAS RELACIONADAS A BRINCADEIRAS COM BOLA. DEPOIS, OUVIRAM A LEITURA DE UM TEXTO INSTRUCIONAL, EM QUE IMAGENS SOBRE COMO FAZER UMA BOLA DE MEIA FORAM DESTACADAS DO MATERIAL DE APOIO E ORGANIZADAS EM SEQUÊNCIA. EM SEGUIDA, AS CRIANÇAS CONFECCIONARAM SUA PRÓPRIA BOLA DE MEIA. AO TERMINAREM A ATIVIDADE, AS CRIANÇAS PARTICIPARAM DE DUAS BRINCADEIRAS: BATATA QUENTE E CABRIOLA, CADÊ A BOLA? DEPOIS DE CONHECER ALGUNS TIPOS DIFERENTES DE BOLAS, AS CRIANÇAS FORAM CONVIDADAS A FAZER UMA ESCRITA ESPONTÂNEA DOS NOMES DE ALGUNS JOGOS QUE UTILIZAM BOLA."
+          />
+
+          <Pagination currentPage={18} />
           {/* Conteúdo do botão do professor - Tabela comparativa */}
           <div className="my-6">
             <TeacherButton
               content={
                 <>
-                  <p className="mb-3">
-                    Respostas:
+                  <TeacherButtonContentHeading>Campos de experiências
+                    da BNCC</TeacherButtonContentHeading>
+                  <ul className="list-disc marker:text-[#832c87] ml-6">
+                    <li>
+                      O eu, o outro e o nós
+                    </li>
+                    <li>Corpo, gestos e movimentos</li>
+                    <li>Traços, sons, cores e formas</li>
+                    <li>
+                      Escuta, fala, pensamento
+                      e imaginação
+                    </li>
+                    <li>Espaços, tempos, quantidades,
+                      relações e transformações</li>
+                  </ul>
+                  <TeacherButtonContentHeading>Objetivos de
+                    aprendizagem e
+                    desenvolvimento da BNCC</TeacherButtonContentHeading>
+                  <p className="mb-4 indent-6">EI03EO01; EI03EO03; EI03EO07;
+                    EI03CG01; EI03CG05; EI03TS02;
+                    EI03EF01; EI03EF02; EI03EF03;
+                    EI03EF07; EI03EF08.</p>
+                  <TeacherButtonContentHeading>Expectativas de
+                    aprendizagem</TeacherButtonContentHeading>
+                  <ul className="list-disc marker:text-[#832c87] ml-6">
+                    <li>Compreender e respeitar os
+                      combinados do grupo.</li>
+                    <li>Demonstrar atitudes solidárias e
+                      colaborativas junto ao grupo em
+                      diferentes situações cotidianas.</li>
+                    <li>Ter iniciativa para escolher brincadeiras, atividades e grupos.</li>
+                    <li>Cumprir as regras estabelecidas.</li>
+                    <li>Ampliar os movimentos direcionados que o próprio corpo
+                      pode realizar.</li>
+                    <li>Desenvolver ações motoras
+                      combinadas para impulsão
+                      (saltitar, saltar e pular).</li>
+                    <li>Participar da criação de movimentos em diferentes contextos.</li>
+                    <li>Controlar voluntariamente as
+                      ações motoras.</li>
+                    <li>Ampliar a habilidade motora
+                      fina por meio de atividades de
+                      recorte (segurar a tesoura de
+                      forma correta e recortar livremente) e de colagem (abrir e
+                      fechar o tubo de cola e dosar o
+                      líquido adequadamente).</li>
+                    <li>Ampliar a habilidade motora
+                      fina por meio de atividades de
+                      desenho e pintura (na totalidade
+                      e respeitando o limite da figura).</li>
+                    <li>Expressar-se livremente fazendo
+                      uso de diferentes linguagens.</li>
+                    <li>Opinar sobre assuntos abordados em assembleia e/ou nas
+                      rodas de conversa.</li>
+                    <li>Brincar com a sonoridade das
+                      palavras em situações diversas.</li>
+                    <li>Realizar uma pseudoleitura.</li>
+                    <li>Conhecer diferentes gêneros
+                      textuais.</li>
+                    <li>Levantar hipóteses sobre diferentes gêneros textuais observando suas características.</li>
+                    <li>Participar de momentos de leitura de diferentes gêneros textuais.</li>
+                  </ul>
+                  <TeacherButtonContentHeading>Você precisa de...</TeacherButtonContentHeading>
+                  <ul className="list-disc marker:text-[#832c87] ml-6">
+                    <li>Cola colorida. </li>
+                    <li>Cartolina ou papel Kraft. </li>
+                    <li>Caneta hidrocor preta. </li>
+                    <li>Riscantes diversos, tais como: lápis de cor, giz de cera e caneta hidrocor. </li>
+                    <li>Lápis-grafite (1 por criança). </li>
+                    <li>Conteúdo digital: contação da história “O gato e os ratos”. </li>
+                  </ul>
+                  <TeacherButtonContentHeading>Desenvolvimento das
+                    atividades</TeacherButtonContentHeading>
+                  <ol className="list-decimal marker:text-[#832c87] marker:font-bold ml-6">
+                    <li>Após as atividades de rotina, com as crianças sentadas em roda, convide-as a observar, na <strong>página 18</strong> do Livro do aluno, a imagem das crianças brincando. Depois
+                      de um tempo de observação, pergunte se alguém conhece essa brincadeira e se
+                      sabe o nome dela. Acolha as observações das crianças e conte que a brincadeira
+                      se chama Pega-pega. </li>
+                    <li>Pergunte às crianças se gostam de brincar de Pega-pega e como é realizada essa
+                      brincadeira. As perguntas presentes na página podem direcionar a conversa, mas
+                      considere que existem variações do Pega-pega. Depois, leve as crianças a uma
+                      área externa, onde poderão brincar de Pega-pega e, após a brincadeira, peça que
+                      registrem como foi esse momento na <strong>página 18</strong> do Livro do aluno. </li>
+                    <li>Diga às crianças que existe uma brincadeira muito parecida com o Pega-pega,
+                      chamada de Pega-pega sombras. Antes de explicar as regras da brincadeira, pergunte: <em>Como essa brincadeira funciona? Qual é a diferença entre o Pega-pega
+                        que conhecemos e o Pega-pega sombras?</em> Explique que, na versão com sombras, o
+                      pegador não toca nos participantes para capturá-los; em vez disso, ele deve pisar
+                      na sombra de outro jogador fazendo com que esse se torne o novo pegador.</li>
+                    <li>Na sequência, leve as crianças novamente a uma área ao ar livre e proponha
+                      que brinquem de Pega-pega sombras. Certifique-se de que haja sol ou uma luz
+                      que possa fazer sombras enquanto as crianças correm. Combine com elas quem
+                      será o pegador e quem poderá ser pego, lembrando que os papéis podem se
+                      alternar durante a brincadeira.  </li>
+                    <li>De volta à sala, convide as crianças a identificar e marcar, na <strong>página 19</strong> do Livro
+                      do aluno, a imagem que representa a brincadeira da qual acabaram de participar.
+                      Aproveite a oportunidade para perguntar à turma: <em>E as demais crianças que não são
+                        o pegador, o que devem fazer?</em> Esse questionamento é importante porque ajuda a
+                      perceber que as ações são diferentes (pegar/fugir) e que os objetivos da brincadeira
+                      também divergem dependendo do papel assumido (quem pega e quem não pega). </li>
+                    <li>Em seguida, com as crianças sentadas em roda, convide-as a conhecer um texto que
+                      traz uma brincadeira de “perseguição” na qual os gatos devem capturar um rato. </li>
+                    <li>Faça, então, a leitura do texto com entonação e questione: <em>Quais animais participaram dessa história? Trata-se de uma brincadeira ou era outro tipo de ação?</em></li>
+                    <li>Acolha os comentários das crianças e auxilie-as no entendimento completo do texto. É
+                      importante garantir a compreensão de que o objetivo do gato era tentar capturar o rato.  </li>
+                    <li>Chame a atenção das crianças para a estrutura do texto. Trata-se de uma narrativa
+                      feita com rimas, como é possível identificar com os termos <strong>gato</strong> e <strong>rato</strong>. Além disso, as frases são curtas, com palavras simples e estruturas que se
+                      repetem, como no paralelismo:
+                      “Onde o gato está?” / “Onde o
+                      rato está?”.  </li>
+                    <li>Na sequência, as crianças vão
+                      conhecer uma fábula na qual os
+                      animais gato e rato fazem parte
+                      da narrativa. Reproduza o vídeo e acolha as percepções das
+                      crianças sobre a história.   </li>
+                    <li>Convide as crianças a escolher
+                      três cores de lápis de cor e a
+                      localizar, no texto da <strong>página 20</strong>
+                      do Livro do aluno, as palavras
+                      <strong>gato</strong>, <strong>rato</strong> e <strong>galo</strong> e a pintá-las.
+                      Depois, elas vão pintar no gráfico a quantidade de palavras
+                      que encontrou. Aproveite esse
+                      momento para trabalhar comparações entre as quantidades
+                      encontradas, como quais palavras encontradas têm a mesma
+                      quantidade, qual delas é a menor de todas, quantos quadradinhos as palavras <strong>gato</strong> e <strong>rato</strong>
+                      têm a mais que <strong>galo</strong>. </li>
+                    <li>Releia o texto para a turma e
+                      solicite às crianças que prestem atenção aos animais que
+                      fazem parte da brincadeira. Na
+                      <strong>página 21</strong> do Livro do aluno,
+                      peça que pintem a ilustração
+                      do animal que não está participando da brincadeira – o galo,
+                      que apenas é mencionado ao
+                      final do texto. Depois, peça às
+                      crianças que escrevam, como
+                      souberem, o nome dos animais
+                      das imagens.  </li>
+                    <li>Retome o assunto sobre o Pega-pega sombras a fim de que as
+                      crianças ajudem a montar um
+                      cartaz da brincadeira. Para isso,
+                      incentive-as a relembrar e citar as regras do jogo durante a
+                      proposta. É importante que elas
+                      vejam o(a) professor(a) escrevendo, por isso, se possível, use
+                      uma letra grande e leia em voz
+                      alta enquanto escreve. </li>
+                    <li>Por fim, convide as crianças a
+                      criar juntas uma nova regra para
+                      o Pega-pega sombras. Caso elas
+                      apresentem dificuldade, dê algumas sugestões: o fugitivo ficar
+                      parado quando é pego; o pegador correr em linha reta; o fugitivo
+                      se abaixar quando é pego; o fu
+                      gitivo se tornar mais um pegador
+                      quando é pego; quem for pego
+                      deve correr em dupla, entre outras possibilidades. Assim que a
+                      nova regra for definida, é necessário registrá-la, da maneira que
+                      preferirem, no cartaz de regras. </li>
+                  </ol>
+                  <TeacherButtonContentHeading>Conteúdo digital</TeacherButtonContentHeading>
+                  <p className="mb-4 indent-6">No <em>link</em>, você encontra a
+                    seção “Observação ativa” e outras sugestões para enriquecer
+                    a prática pedagógica.</p>
+                  <a href="https://go.sae.digital/OtvnHy" target="_blank">https://go.sae.digital/OtvnHy</a>
+
+                  <p className="mb-4 indent-6">
+                    <strong>Resposta atividade:</strong>
                   </p>
-                  {(() => {
-                    const question = chapterQuestions.chapter1.find(q => q.id === 'ch1_q7');
-                    if (question && question.type === 'table-fill') {
-                      return (
-                        <>
-                          {/* Respostas da tabela */}
-                          {question.correctAnswer && (
-                            <>
-                              <p className="mb-2 font-semibold">
-                                {question.number !== undefined && (
-                                  <span style={{ color: '#00776E', fontWeight: 'bold' }}>{question.number}. </span>
-                                )}
-                                Tabela:
-                              </p>
-                              {question.rows.map((row) => {
-                                const correctAnswers = question.correctAnswer!;
-                                // Obtém o primeiro campo da row (primeira coluna)
-                                const firstColumnKey = Object.keys(row).find(key => key !== 'id') || 'paragraph';
-                                const firstColumnValue = row[firstColumnKey] || '';
-
-                                // Gera os fieldIds para cada coluna (exceto a primeira)
-                                const columnAnswers = question.columns.slice(1).map((columnName, colIndex) => {
-                                  const fieldId = `${question.id}_${row.id}_col${colIndex + 1}`;
-                                  return {
-                                    columnName,
-                                    answer: correctAnswers[fieldId] || ''
-                                  };
-                                });
-
-                                return (
-                                  <div key={row.id} className="mb-4">
-                                    <p className="mb-2 font-semibold" style={{ color: '#0E3B5D' }}>
-                                      {question.columns[0]} {firstColumnValue}:
-                                    </p>
-                                    {columnAnswers.map((colAnswer, idx) => (
-                                      <p key={idx} className="mb-1">
-                                        <strong>{colAnswer.columnName}:</strong> {colAnswer.answer}
-                                      </p>
-                                    ))}
-                                  </div>
-                                );
-                              })}
-                            </>
-                          )}
-                          {/* Respostas das subquestões */}
-                          {question.subQuestions && question.subQuestions.length > 0 && (
-                            <>
-                              <p className="mb-2 mt-4 font-semibold">Subquestões:</p>
-                              {question.subQuestions.map((subQ) => (
-                                <p key={subQ.letter} className="mb-3">
-                                  <span style={{ color: '#00776E', fontWeight: 'bold' }}>{subQ.letter}) </span>
-                                  <span dangerouslySetInnerHTML={{ __html: subQ.correctAnswer || '' }} />
-                                </p>
-                              ))}
-                            </>
-                          )}
-                        </>
-                      );
-                    }
-                    return null;
-                  })()}
-                  {(() => {
-                    const question = chapterQuestions.chapter1.find(q => q.id === 'ch1_q8');
-                    if (question && question.type === 'text-input') {
-                      // Se tiver subquestões, renderiza cada uma
-                      if (question.subQuestions && question.subQuestions.length > 0) {
-                        return question.subQuestions.map((subQ) => (
-                          <p key={subQ.letter} className="mb-3">
-                            {question.number !== undefined && (
-                              <span style={{ color: '#00776E', fontWeight: 'bold' }}>{question.number}. </span>
-                            )}
-                            <span style={{ color: '#00776E', fontWeight: 'bold' }}>{subQ.letter}) </span>
-                            <span dangerouslySetInnerHTML={{ __html: subQ.correctAnswer || '' }} />
-                          </p>
-                        ));
-                      }
-                      // Se não tiver subquestões, renderiza a resposta direta
-                      if (question.correctAnswer) {
-                        return (
-                          <p className="mb-3">
-                            {question.number !== undefined && (
-                              <span style={{ color: '#00776E', fontWeight: 'bold' }}>{question.number}. </span>
-                            )}
-                            <span dangerouslySetInnerHTML={{ __html: question.correctAnswer }} />
-                          </p>
-                        );
-                      }
-                    }
-                    return null;
-                  })()}
+                  <img src="/images/64.png" alt="" className="noborder" style={{ cursor: 'default' }} />
+                  <p className="mb-4 indent-6">
+                    Desenho: Resposta pessoal.
+                  </p>
                 </>
               }
             />
           </div>
-          {/* Questão intercalada no conteúdo - Tabela comparativa */}
-          <QuestionRenderer
-            question={chapterQuestions.chapter1[6]}
-            userAnswers={userAnswers}
-            onAnswerChange={handleAnswerChange}
-            showResults={showTeacherView}
-          />
-          {/* Questão intercalada no conteúdo */}
-          <QuestionRenderer
-            question={chapterQuestions.chapter1[7]}
-            userAnswers={userAnswers}
-            onAnswerChange={handleAnswerChange}
-            showResults={showTeacherView}
-          />
-          {/* Botão de download das questões */}
-          <div className="my-6">
-            <DownloadQuestionsButton
-              questions={[chapterQuestions.chapter1[8], chapterQuestions.chapter1[9], chapterQuestions.chapter1[10]]}
-              userAnswers={userAnswers}
-              title="Questões da Página 10"
-              fileName="questoes-pagina-10.pdf"
-            />
-          </div>
-          <Pagination currentPage={11} />
+          <p className="mb-4 indent-6">OBSERVE A IMAGEM. DO QUE AS CRIANÇAS ESTÃO BRINCANDO?</p>
+          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
+          <ul className="list-disc marker:text-[#832c87] ml-6">
+            <li>VOCÊ JÁ BRINCOU DE PEGA-PEGA? </li>
+            <li>COMO É ESSA BRINCADEIRA?  </li>
+            <li>COM COLA COLORIDA, CONTORNE NA IMAGEM QUEM É O PEGADOR
+              DA BRINCADEIRA. </li>
+          </ul>
+          <p className="mb-4 indent-6">QUE TAL BRINCAR DE PEGA-PEGA COM OS COLEGAS? DECIDAM JUNTOS
+            QUEM SERÁ O PEGADOR E DIVIRTAM-SE. DEPOIS, NO QUADRO ABAIXO,
+            FAÇA UM DESENHO DESSE MOMENTO.</p>
+
+
+          <Pagination currentPage={19} />
           {/* Conteúdo do botão do professor */}
           <div className="my-6">
             <TeacherButton
@@ -1078,71 +1108,68 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <MinhaVersao />
+
           <p className="mb-4 indent-6">
-            Você leu duas notícias diferentes sobre a inauguração do Robot Mall, na China. Agora, sua tarefa será produzir uma nova versão dessa notícia, com base nas escolhas que considerar mais importantes, interessantes ou relevantes para o leitor. Para isso, utilize os dados principais dos dois textos, as observações registradas no quadro comparativo e as análises realizadas ao longo do capítulo.
+            VOCÊ JÁ OUVIU FALAR DE <strong>PEGA-PEGA SOMBRAS</strong>? OUÇA
+            A EXPLICAÇÃO QUE O(A) PROFESSOR(A) VAI DAR SOBRE
+            ESSA BRINCADEIRA E DIVIRTA-SE COM OS COLEGAS. DEPOIS,
+            MARQUE, COMO DESEJAR, A IMAGEM QUE SE PARECE COM
+            ESSA BRINCADEIRA.
           </p>
-          <p className="mb-4 indent-6"><strong>Preparação</strong></p>
-          <p className="mb-4 indent-6">Sua notícia deve conter os elementos listados a seguir.
-          </p>
-          <ul className="list-disc marker:text-[#832c87] ml-6">
-            <li><strong>Título </strong>: chamativo e informativo, que antecipe o assunto e indique o enfoque escolhido
-              para o texto.  </li>
-            <li><strong>Linha-fina </strong>: complementar ao título, com um dado ou uma ideia que aprofunde o tema.  </li>
-            <li><strong>Lide </strong>: com as informações essenciais (o que, quem, quando, onde, como e por quê).  </li>
-            <li><strong>Corpo da notícia </strong>: detalhado, com informações adicionais, exemplos, citações (caso
-              deseje utilizá-las), contexto e possíveis desdobramentos.  </li>
-            <li><strong>Fechamento </strong>: conclusivo, com uma informação final que dê sentido de encerramento.  </li>
-          </ul>
-          <p className="mb-4 indent-6"><strong>Produção</strong></p>
-          <p className="mb-4 indent-6">Durante a produção, refita sobre o tipo de informação que você vai destacar e que
-            elementos e dados das duas notícias você considera essenciais e precisa manter em
-            sua produção.
-          </p>
-          <p className="mb-4 indent-6"><strong>Avaliação</strong></p>
-          <p className="mb-4 indent-6">Antes de finalizar a sua versão, confira o <em>checklist</em> a seguir para aprimorá-la.
-          </p>
-          {/* Tabela de Critérios de Avaliação */}
-          <CriteriosAvaliacao
-            instanceId="producao_texto"
-            criterios={[
-              {
-                id: 'criterio_titulo',
-                nome: 'TÍTULO',
-                pergunta: 'Apresenta o assunto principal de forma atrativa?',
-              },
-              {
-                id: 'criterio_linha_fina',
-                nome: 'LINHA-FINA',
-                pergunta: 'Complementa o título com uma informação importante ou que aprofunda o assunto?',
-              },
-              {
-                id: 'criterio_lide',
-                nome: 'LIDE',
-                pergunta: 'Apresenta as informações essenciais (o quê, quem, quando, onde) de forma clara?',
-              },
-              {
-                id: 'criterio_corpo',
-                nome: 'CORPO DA NOTÍCIA',
-                pergunta: 'Desenvolve o assunto de forma organizada e completa?',
-              },
-              {
-                id: 'criterio_linguagem',
-                nome: 'LINGUAGEM',
-                pergunta: 'Utiliza linguagem objetiva e adequada ao gênero notícia?',
-              },
-              {
-                id: 'criterio_foco',
-                nome: 'FOCO',
-                pergunta: 'Mantém o foco no fato noticiado sem expressar opinião?',
-              },
-            ]}
-            userAnswers={userAnswers}
-            onAnswerChange={handleAnswerChange}
-          />
-          <Pagination currentPage={12} />
-          <ProducaoTexto instanceId="producaoTexto1" />
-          <Pagination currentPage={13} />
+
+          <Pagination currentPage={20} />
+          <p className="mb-4 indent-6">OUÇA A LEITURA DE UM TEXTO QUE LEMBRA A BRINCADEIRA <strong>PEGA-PEGA</strong>. DEPOIS, FAÇA O QUE SE PEDE.</p>
+          <img src="/images/icons-2e.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
+          <CaixaTexto title='GATO E RATO'>
+            <GatoRatoCornerAnimation />
+            <div className="relative pr-14 md:pr-24">
+              <p className="mb-4 indent-6">O GATO ENTRA POR ALI</p>
+              <p className="mb-4 indent-6">O RATO SAI POR ACOLÁ</p>
+              <br />
+              <p className="mb-4 indent-6">ONDE O GATO ESTÁ?</p>
+              <p className="mb-4 indent-6">ONDE O RATO ESTÁ? </p>
+              <br />
+              <p className="mb-4 indent-6">O GATO ESTÁ SEMPRE ATRÁS DO RATO</p>
+              <p className="mb-4 indent-6">ATÉ O SOL RAIAR...</p>
+              <p className="mb-4 indent-6">BEM NA HORA DO GALO CANTAR!</p>
+            </div>
+          </CaixaTexto>
+          <div className="flex w-full justify-center">
+            <GameModal
+              thumbnailSrc="images/thumbEscolaDigital.svg"
+              thumbnailAlt="Abrir vídeo Escola Digital"
+              introHint="Clique para assistir a videoaula."
+            >
+              <div className="relative h-full w-full bg-black">
+                <iframe
+                  src="https://go.sae.digital/ZuI25j"
+                  title="Videoaula Escola Digital"
+                  className="h-full w-full border-0"
+                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+                <a
+                  href="https://go.sae.digital/ZuI25j"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute left-3 top-3 z-[65] inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[#80298F] shadow hover:bg-white sm:left-4 sm:top-4"
+                  aria-label="Abrir videoaula em nova aba"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden>
+                    <path
+                      fill="currentColor"
+                      d="M14 3v2h3.59l-9.3 9.3 1.41 1.41 9.3-9.3V10h2V3h-7zM5 5h6V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-2v6H5V5z"
+                    />
+                  </svg>
+                  Abrir em nova aba
+                </a>
+              </div>
+            </GameModal>
+          </div>
+          <p className="mb-4 indent-6">QUE TAL BRINCAR DE PEGA-PEGA COM OS COLEGAS? DECIDAM JUNTOS
+            QUEM SERÁ O PEGADOR E DIVIRTAM-SE. DEPOIS, NO QUADRO ABAIXO,
+            FAÇA UM DESENHO DESSE MOMENTO.</p>
+          <Pagination currentPage={21} />
           {/* Conteúdo do botão do professor */}
           <div className="my-6">
             <TeacherButton
@@ -2072,7 +2099,7 @@ PARA BRINCAR E SE DIVERTIR!`}
                     fileName="questoes-pagina-23.pdf"
                   />
                 </div>
-                <MinhaVersao />
+
                 <p className="mb-4 indent-6">Você já leu e analisou duas fábulas clássicas: A lebre e a tartaruga e O leão e o rato. Agora, sua tarefa será fazer uma reescrita criativa de uma dessas histórias, mas você terá dois desafios.</p>
                 <ol className="list-decimal marker:text-[#832c87] ml-6 mb-4">
                   <li><strong>Mude a forma do texto</strong>: se a fábula escolhida era em prosa, será reescrita em versos; se era em versos, será reescrita em prosa.
@@ -2722,6 +2749,8 @@ PARA BRINCAR E SE DIVERTIR!`}
           <img src="/images/setaTopo.png" alt="Voltar ao início do livro" />
         </button>
       )}
+
+      <BookPageMode containerRef={pageContainerRef} initialPage={currentPage} />
     </div>
   );
 }

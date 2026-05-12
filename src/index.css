@@ -61,3 +61,40 @@ li {
 ul.question-subitems li::marker {
   color: #832c87;
 }
+
+/* Animação suave da caixa GATO E RATO — movimento devagar e amigável para crianças pequenas */
+@keyframes gato-rato-chase {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes gato-rato-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
+.gato-rato-corner {
+  animation: gato-rato-chase 5s ease-in-out infinite;
+}
+
+.gato-rato-corner__video {
+  animation: gato-rato-bounce 2.6s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gato-rato-corner,
+  .gato-rato-corner__video {
+    animation: none;
+  }
+}

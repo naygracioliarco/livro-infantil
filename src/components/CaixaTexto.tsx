@@ -5,9 +5,10 @@ interface CaixaTextoProps {
   children: ReactNode;
   backgroundColor?: string;
   columns?: number;
+  centered?: boolean;
 }
 
-function CaixaTexto({ title, children, backgroundColor, columns }: CaixaTextoProps) {
+function CaixaTexto({ title, children, backgroundColor, columns, centered }: CaixaTextoProps) {
   const contentStyle: React.CSSProperties = {
     ...(columns && columns > 1 ? {
       // columnCount: columns,
@@ -34,11 +35,14 @@ function CaixaTexto({ title, children, backgroundColor, columns }: CaixaTextoPro
           fontWeight: 700,
           lineHeight: 'normal',
         }}
-        className="mb-4"
+        className={`mb-4${centered ? ' text-center' : ''}`}
       >
         {title}
       </h4>
-      <div className="texto-corrido" style={contentStyle}>
+      <div
+        className={`texto-corrido${centered ? ' texto-corrido--center' : ''}`}
+        style={contentStyle}
+      >
         {children}
       </div>
     </div>

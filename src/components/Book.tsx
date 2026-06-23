@@ -26,6 +26,8 @@ import MatchConnectQuestion, { type MatchConnectItem } from './MatchConnectQuest
 import ImageFillQuestion, { type ImageFillItem } from './ImageFillQuestion';
 import GameModal from './GameModal';
 import BookPageMode from './BookPageMode';
+import AreaDesenho from './AreaDesenho';
+import ContagemQuadrados from './ContagemQuadrados';
 const pag16Img = (n: number) => `/images/pag16_img${n}.png`;
 
 const MATCH_PAG16_LEFT: MatchConnectItem[] = [1, 2, 3].map((n) => ({
@@ -78,6 +80,8 @@ function Book() {
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({});
   const [showTeacherView, setShowTeacherView] = useState(false);
   const [currentPage, setCurrentPage] = useState(10);
+  const [pag18ShowContorno, setPag18ShowContorno] = useState(false);
+  const [pag19ShowContorno, setPag19ShowContorno] = useState(false);
 
   useEffect(() => {
     setUserAnswers(loadAnswers());
@@ -734,7 +738,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             COMO MONTAR UMA BOLA DE MEIA. DEPOIS, DESTAQUE E COLE AS
             IMAGENS NA ORDEM CORRETA.
           </p>
-          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
+          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <CaixaTexto title='Bola de meia'>
             <BolaDeMeiaQuestion />
 
@@ -764,7 +768,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             QUE TAL CONHECER OUTRA BRINCADEIRA COM BOLA DE MEIA? OUÇA
             A LEITURA DAS REGRAS QUE O(A) PROFESSOR(A) VAI FAZER.
           </p>
-          <img src="/images/icons-2a.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
+          <img src="/images/icons-2a.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <CaixaTexto title=''>
             <div className="mb-4 indent-6">
               <CabriolaTituloInterativo />
@@ -852,7 +856,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             LIGUE AS IMAGENS DAS BOLAS AOS JOGOS EM QUE ELAS SÃO
             USADAS. DEPOIS, PINTE AS BOLAS COMO DESEJAR.
           </p>
-          <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
+          <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <div className="my-8">
             <MatchConnectQuestion
               leftItems={MATCH_PAG16_LEFT}
@@ -888,7 +892,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             USADAS. DEPOIS, ESCREVA COMO SOUBER O NOME DO JOGO NOS
             ESPAÇOS CORRETOS.
           </p>
-          <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
+          <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <div className="my-6">
             <ImageFillQuestion
               items={FILL_PAG17_ITEMS}
@@ -1078,18 +1082,35 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <p className="mb-4 indent-6">OBSERVE A IMAGEM. DO QUE AS CRIANÇAS ESTÃO BRINCANDO?</p>
-          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
+          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
+          <p className="mb-4 indent-6">OBSERVE A IMAGEM. DO QUE AS CRIANÇAS ESTÃO BRINCANDO?</p>{/* Imagem */}
+          <div className="flex flex-col items-center my-6">
+            <img
+              src={pag18ShowContorno ? '/images/pag18_img2.png' : '/images/pag18_img1.png'}
+              alt=""
+              className="max-w-[60%]"
+            />
+            <p className="text-[10px] text-slate-600 mt-2">ninefar/stock.adobe.com
+            </p>
+          </div>
           <ul className="list-disc marker:text-[#832c87] ml-6">
             <li>VOCÊ JÁ BRINCOU DE PEGA-PEGA? </li>
             <li>COMO É ESSA BRINCADEIRA?  </li>
             <li>COM COLA COLORIDA, CONTORNE NA IMAGEM QUEM É O PEGADOR
               DA BRINCADEIRA. </li>
           </ul>
+          <button
+            type="button"
+            className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-5 py-2.5 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
+            onClick={() => setPag18ShowContorno((v) => !v)}
+          >
+            {pag18ShowContorno ? 'Voltar à imagem original' : 'Mostrar quem é o pegador'}
+          </button>
           <p className="mb-4 indent-6">QUE TAL BRINCAR DE PEGA-PEGA COM OS COLEGAS? DECIDAM JUNTOS
             QUEM SERÁ O PEGADOR E DIVIRTAM-SE. DEPOIS, NO QUADRO ABAIXO,
             FAÇA UM DESENHO DESSE MOMENTO.</p>
 
+          <AreaDesenho storageKey="livro:pag18-desenho-pega-pega" />
 
           <Pagination currentPage={19} />
           {/* Conteúdo do botão do professor */}
@@ -1097,18 +1118,13 @@ PARA BRINCAR E SE DIVERTIR!`}
             <TeacherButton
               content={
                 <>
-                  <p className="mb-3">
-                    EF69LP06, EF69LP07, EF69LP08, EF67LP09, EF67LP10, EF67LP32, EF67LP33, EF06LP05, EF06LP06, EF06LP11, EF06LP12,
-                    EF67LP36. Antes da produção, retome com a turma os elementos essenciais da estrutura da notícia: título, linha-fina, lide,
-                    corpo e fechamento. Enfatize que o foco da atividade não é apenas repetir informações, mas selecionar, organizar e redigir
-                    uma notícia com um ponto de vista consciente e intencional, respeitando as características do gênero. A proposta favorece a construção da autonomia escritora e o desenvolvimento da habilidade de tomar decisões comunicativas, competências centrais para a formação de leitores e produtores conscientes de textos.
+                  <p className="mb-4 indent-6"><strong>Resposta atividade:</strong></p><img src="/images/66.png" alt="" className="noborder" style={{ cursor: 'default' }} />
 
-                  </p>
                 </>
               }
             />
           </div>
-
+          <img src="/images/icons-2c.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <p className="mb-4 indent-6">
             VOCÊ JÁ OUVIU FALAR DE <strong>PEGA-PEGA SOMBRAS</strong>? OUÇA
             A EXPLICAÇÃO QUE O(A) PROFESSOR(A) VAI DAR SOBRE
@@ -1116,22 +1132,85 @@ PARA BRINCAR E SE DIVERTIR!`}
             MARQUE, COMO DESEJAR, A IMAGEM QUE SE PARECE COM
             ESSA BRINCADEIRA.
           </p>
+          {/* Imagem */}
+          <div className="flex flex-col items-center my-6">
+            <img
+              src={pag19ShowContorno ? '/images/66.png' : '/images/19.png'}
+              alt=""
+              className="max-w-[60%]"
+            />
+            <p className="text-[10px] text-slate-600 mt-2">SAE Digital
+            </p>
+          </div>
+          <button
+            type="button"
+            className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-4 py-2 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
+            onClick={() => setPag19ShowContorno((v) => !v)}
+          >
+            {pag19ShowContorno ? 'Voltar à imagem original' : 'Mostrar a imagem que se parece com a brincadeira'}
+          </button>
+          <p className="mb-4 indent-6">DEPOIS DE SE DIVERTIR BRINCANDO
+            DE <strong>PEGA-PEGA SOMBRAS</strong>, QUE TAL
+            CONHECER UM JOGO QUE TAMBÉM
+            TEM TUDO A VER COM SOMBRAS?</p>
+          <div className="flex w-full justify-center">
+            <GameModal
+              thumbnailSrc="images/thumbEscolaDigital.svg"
+              thumbnailAlt="Abrir objeto digital de aprendizagem"
+              introHint="Clique para jogar."
+            >
+              <div className="relative h-full w-full bg-black">
+                <iframe
+                  src="https://go.sae.digital/2V2RNC"
+                  title="Objeto digital de aprendizagem"
+                  className="h-full w-full border-0"
+                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+                <a
+                  href="https://go.sae.digital/2V2RNC"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute left-3 top-3 z-[65] inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[#80298F] shadow hover:bg-white sm:left-4 sm:top-4"
+                  aria-label="Abrir objeto digital de aprendizagem em nova aba"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden>
+                    <path
+                      fill="currentColor"
+                      d="M14 3v2h3.59l-9.3 9.3 1.41 1.41 9.3-9.3V10h2V3h-7zM5 5h6V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-2v6H5V5z"
+                    />
+                  </svg>
+                  Abrir em nova aba
+                </a>
+              </div>
+            </GameModal>
+          </div>
 
           <Pagination currentPage={20} />
+          {/* Conteúdo do botão do professor */}
+          <div className="my-6">
+            <TeacherButton
+              content={
+                <>
+                  <p className="mb-4 indent-6"><strong>Resposta atividade:</strong></p><img src="/images/res_pag20.png" alt="" className="noborder" style={{ cursor: 'default' }} />
+
+                </>
+              }
+            />
+          </div>
+          <img src="/images/icons-2e.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <p className="mb-4 indent-6">OUÇA A LEITURA DE UM TEXTO QUE LEMBRA A BRINCADEIRA <strong>PEGA-PEGA</strong>. DEPOIS, FAÇA O QUE SE PEDE.</p>
-          <img src="/images/icons-2e.png" alt="" className="noborder" style={{ cursor: 'default', width: '15%', height: 'auto' }} />
-          <CaixaTexto title='GATO E RATO'>
-            <GatoRatoCornerAnimation />
-            <div className="relative pr-14 md:pr-24">
-              <p className="mb-4 indent-6">O GATO ENTRA POR ALI</p>
-              <p className="mb-4 indent-6">O RATO SAI POR ACOLÁ</p>
+          <CaixaTexto title="GATO E RATO" centered>
+            <div>
+              <p className="mb-4">O GATO ENTRA POR ALI</p>
+              <p className="mb-4">O RATO SAI POR ACOLÁ</p>
               <br />
-              <p className="mb-4 indent-6">ONDE O GATO ESTÁ?</p>
-              <p className="mb-4 indent-6">ONDE O RATO ESTÁ? </p>
+              <p className="mb-4">ONDE O GATO ESTÁ?</p>
+              <p className="mb-4">ONDE O RATO ESTÁ? </p>
               <br />
-              <p className="mb-4 indent-6">O GATO ESTÁ SEMPRE ATRÁS DO RATO</p>
-              <p className="mb-4 indent-6">ATÉ O SOL RAIAR...</p>
-              <p className="mb-4 indent-6">BEM NA HORA DO GALO CANTAR!</p>
+              <p className="mb-4">O GATO ESTÁ SEMPRE ATRÁS DO RATO</p>
+              <p className="mb-4">ATÉ O SOL RAIAR...</p>
+              <p className="mb-4">BEM NA HORA DO GALO CANTAR!</p>
             </div>
           </CaixaTexto>
           <div className="flex w-full justify-center">
@@ -1166,9 +1245,17 @@ PARA BRINCAR E SE DIVERTIR!`}
               </div>
             </GameModal>
           </div>
-          <p className="mb-4 indent-6">QUE TAL BRINCAR DE PEGA-PEGA COM OS COLEGAS? DECIDAM JUNTOS
-            QUEM SERÁ O PEGADOR E DIVIRTAM-SE. DEPOIS, NO QUADRO ABAIXO,
-            FAÇA UM DESENHO DESSE MOMENTO.</p>
+          <p className="mb-4 indent-6">ESCOLHA TRÊS CORES DIFERENTES DE LÁPIS DE COR: UMA PARA A
+            PALAVRA <strong>GATO</strong>, UMA PARA A PALAVRA <strong>RATO</strong>, E OUTRA PARA A PALAVRA <strong>GALO</strong>. DEPOIS, ENCONTRE ESSAS TRÊS PALAVRAS NO TEXTO ACIMA
+            E PINTE CADA UMA DELAS COM AS CORES QUE VOCÊ ESCOLHEU.</p>
+            <p className="mb-4 indent-6">QUANTAS VEZES AS PALAVRAS <strong>GATO</strong>, <strong>RATO</strong> E <strong>GALO</strong> APARECEM NO TEXTO? 
+            PINTE OS QUADRINHOS QUE REPRESENTAM CADA QUANTIDADE. </p>
+
+            <ContagemQuadrados storageKey="livro:pag20-contagem-gato-rato-galo" />
+            <ul className="list-disc marker:text-[#832c87] ml-6">
+              <li>QUAL PALAVRA APARECE MAIS VEZES NO TEXTO? </li>
+              <p>QUAL PALAVRA APARECE MENOS VEZES NO TEXTO?</p>
+            </ul>
           <Pagination currentPage={21} />
           {/* Conteúdo do botão do professor */}
           <div className="my-6">
@@ -2746,7 +2833,7 @@ PARA BRINCAR E SE DIVERTIR!`}
           className="fixed bottom-1 right-6 z-40 bg-gradient-to-r text-white p-3 rounded-full hover:scale-110 transition-all"
           title="Voltar ao início do livro"
         >
-          <img src="/images/setaTopo.png" alt="Voltar ao início do livro" />
+          <img src="/images/setaTopo.svg" alt="Voltar ao início do livro" />
         </button>
       )}
 

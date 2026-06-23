@@ -45,6 +45,10 @@
   text-transform: uppercase;
 }
 
+.texto-corrido--center p {
+  text-align: center;
+}
+
 /* Garantir todo texto corrido em maiúsculas */
 p,
 li {

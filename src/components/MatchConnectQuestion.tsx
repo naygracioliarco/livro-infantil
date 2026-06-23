@@ -2,7 +2,8 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 
 export type MatchConnectItem = {
   id: string;
-  imageSrc: string;
+  imageSrc?: string;
+  label?: string;
   alt?: string;
 };
 
@@ -65,6 +66,29 @@ function loadConnections(key: string | undefined): MatchConnection[] {
   } catch {
     return [];
   }
+}
+
+function MatchConnectItemContent({ item }: { item: MatchConnectItem }) {
+  if (item.label) {
+    return (
+      <span className="px-2 text-center text-sm font-bold uppercase leading-snug text-[#832c87] md:text-base">
+        {item.label}
+      </span>
+    );
+  }
+
+  if (item.imageSrc) {
+    return (
+      <img
+        src={item.imageSrc}
+        alt={item.alt ?? ''}
+        draggable={false}
+        className="max-h-20 w-auto max-w-full object-contain md:max-h-24"
+      />
+    );
+  }
+
+  return null;
 }
 
 function MatchConnectQuestion({
@@ -266,14 +290,9 @@ function MatchConnectQuestion({
                 activeLeftId === item.id
                   ? 'border-[#832c87] ring-2 ring-[#832c87]/30'
                   : 'border-gray-200 hover:border-[#832c87]/50'
-              }`}
+              } ${item.label ? 'min-h-[5rem] bg-[#f5ead6] md:min-h-[6rem]' : ''}`}
             >
-              <img
-                src={item.imageSrc}
-                alt={item.alt ?? ''}
-                draggable={false}
-                className="max-h-20 w-auto max-w-full object-contain md:max-h-24"
-              />
+              <MatchConnectItemContent item={item} />
             </button>
           ))}
         </div>
@@ -287,12 +306,7 @@ function MatchConnectQuestion({
               onClick={(e) => handleRightClick(item.id, e)}
               className="flex items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 shadow-sm transition hover:border-[#832c87]/50 md:p-3"
             >
-              <img
-                src={item.imageSrc}
-                alt={item.alt ?? ''}
-                draggable={false}
-                className="max-h-20 w-auto max-w-full object-contain md:max-h-24"
-              />
+              <MatchConnectItemContent item={item} />
             </button>
           ))}
         </div>

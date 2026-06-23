@@ -59,9 +59,11 @@ function ImageFillQuestion({ items, storageKey, className = '' }: ImageFillQuest
           </div>
 
           <div>
+          {(item.showLabel ?? Boolean(item.labelPrefix)) && (
             <p className="mb-2 text-xl font-semibold uppercase text-[#4B4B4B]">
               {item.labelPrefix ?? 'BOLA DE'}
             </p>
+          )}
             <input
               type="text"
               value={answers[item.id] ?? ''}

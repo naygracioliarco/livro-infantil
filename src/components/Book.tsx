@@ -9,6 +9,7 @@ import ParaFamilia from './ParaFamilia';
 import CaixaTexto from './CaixaTexto';
 import DescobertasCard from './DescobertasCard';
 import RelembrarAventurasCard from './RelembrarAventurasCard';
+import CoracoesPintar from './CoracoesPintar';
 import TeacherButtonContentHeading from './TeacherButtonContentHeading';
 import BolaDeMeiaQuestion from './BolaDeMeiaQuestion';
 import CabriolaTituloInterativo from './CabriolaTituloInterativo';
@@ -1922,12 +1923,42 @@ QUE UTILIZA O BAMBOLÊ NAS APRESENTAÇÕES." />
               </p>
             </div>
           </div>
-          <p>PINTE A QUANTIDADE DE CORAÇÕES PINTE A QUANTIDADE DE CORAÇÕES
+          <p>PINTE A QUANTIDADE DE CORAÇÕES 
             QUE REPRESENTA O QUANTO VOCÊ QUE REPRESENTA O QUANTO VOCÊ
             GOSTOU DAS VIVÊNCIAS AO LONGO GOSTOU DAS VIVÊNCIAS AO LONGO
             DA UNIDADE. </p>
-            
 
+          <CoracoesPintar storageKey="livro:pag27-coracoes" />
+          <div className="flex flex-col items-center mb-4">
+            <div
+              style={{
+                display: 'inline-block',
+                padding: '8px 24px',
+                borderRadius: '999px',
+                backgroundColor: '#dbcde4',
+                border: '4px solid #dbcde4',
+              }}
+            >
+              <p
+                style={{
+                  margin: 0,
+                  color: '#000000',
+                  fontFamily: 'Ubuntu, sans-serif',
+                  fontWeight: 300,
+                  fontSize: '18px',
+                  textAlign: 'center',
+                  textTransform: 'uppercase',
+                  lineHeight: 1.2,
+                }}
+              >
+               RELEMBRE AS EXPERIÊNCIAS VIVENCIADAS AO LONGO RELEMBRE AS EXPERIÊNCIAS VIVENCIADAS AO LONGO 
+DA UNIDADE. DEPOIS, REGISTRE ABAIXO A VIVÊNCIA DE DA UNIDADE. DEPOIS, REGISTRE ABAIXO A VIVÊNCIA DE 
+QUE VOCÊ MAIS GOSTOU.
+
+              </p>
+            </div>
+          </div>
+          <AreaDesenho storageKey="livro:pag27-desenho-final" />
         </div>
         {/* <footer className="bg-slate-100 py-6 px-8 border-t border-slate-200">
           <p className="text-sm text-slate-600 text-center">

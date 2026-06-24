@@ -291,7 +291,7 @@ function MatchConnectQuestion({
               type="button"
               ref={(el) => setLeftRef(item.id, el)}
               onClick={(e) => handleLeftClick(item.id, e)}
-              className={`flex items-center justify-center rounded-xl border-2 bg-white p-2 shadow-sm transition md:p-3 ${
+              className={`flex flex-1 items-center justify-center rounded-xl border-2 bg-white p-2 shadow-sm transition md:p-3 ${
                 activeLeftId === item.id
                   ? 'border-[#832c87] ring-2 ring-[#832c87]/30'
                   : 'border-gray-200 hover:border-[#832c87]/50'
@@ -309,7 +309,7 @@ function MatchConnectQuestion({
               type="button"
               ref={(el) => setRightRef(item.id, el)}
               onClick={(e) => handleRightClick(item.id, e)}
-              className="flex items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 shadow-sm transition hover:border-[#832c87]/50 md:p-3"
+              className="flex flex-1 items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 shadow-sm transition hover:border-[#832c87]/50 md:p-3"
             >
               <MatchConnectItemContent item={item} />
             </button>

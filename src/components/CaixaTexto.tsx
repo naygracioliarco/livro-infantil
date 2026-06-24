@@ -20,9 +20,9 @@ function CaixaTexto({ title, children, backgroundColor, columns, centered }: Cai
   return (
     <div
       style={{
-        border: '3px solid #0E3B5D',
+        border: '3px solid #fff8eb',
+        backgroundColor: '#fff8eb',
         position: "relative",
-        backgroundColor: backgroundColor || 'transparent',
       }}
       className="p-4 my-4"
     >

@@ -144,106 +144,108 @@ function AreaDesenho({
   }, [storageKey]);
 
   return (
-    <div className={`mx-auto my-5 max-w-[800px] select-none text-center ${className}`}>
-      <div className="mb-4 rounded-[10px] border-2 border-[#e9ecef] bg-[#f8f9fa] p-4 md:p-[15px]">
-        <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-start md:gap-5">
-          <div className="text-left">
-            <label className="mb-2 block text-sm font-bold text-[#333]">🎨 ESCOLHA A COR:</label>
-            <div className="flex flex-wrap items-center gap-2">
-              {COLORS.map((color) => (
-                <button
-                  key={color}
-                  type="button"
-                  title={color}
-                  onClick={() => handleColorSelect(color)}
-                  className={`h-[35px] w-[35px] rounded-full border-[3px] transition hover:scale-110 ${
-                    !isEraser && currentColor === color
-                      ? 'border-[#832c87] shadow-[0_0_10px_rgba(131,44,135,0.5)]'
-                      : 'border-transparent'
-                  }`}
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="text-left">
-            <label className="mb-2 block text-sm font-bold text-[#333]">🖌️ TAMANHO:</label>
-            <div className="flex flex-wrap items-center gap-2">
-              {BRUSH_SIZES.map((size) => (
-                <button
-                  key={size}
-                  type="button"
-                  onClick={() => setCurrentSize(size)}
-                  className={`cursor-pointer rounded-full bg-[#333] transition hover:scale-110 ${
-                    BRUSH_SIZE_CLASS[size]
-                  } ${
-                    currentSize === size
-                      ? 'border-2 border-[#832c87] shadow-[0_0_8px_rgba(131,44,135,0.5)]'
-                      : 'border-2 border-transparent'
-                  }`}
-                  aria-label={`Tamanho ${size}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="text-left">
-            <label className="mb-2 block text-sm font-bold text-[#333]">🔧 AÇÕES:</label>
-            <div className="flex flex-wrap items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setIsEraser((v) => !v)}
-                className={`rounded-[5px] px-3 py-2 text-sm text-white transition hover:-translate-y-0.5 ${
-                  isEraser
-                    ? 'bg-[#e67e22] shadow-[0_0_10px_rgba(230,126,34,0.5)]'
-                    : 'bg-[#6c757d]'
-                }`}
-              >
-                {isEraser ? '🧹 ATIVO' : '🧹 BORRACHA'}
-              </button>
-              <button
-                type="button"
-                onClick={handleClear}
-                className="rounded-[5px] bg-[#dc3545] px-3 py-2 text-sm text-white transition hover:-translate-y-0.5"
-              >
-                🗑️ LIMPAR
-              </button>
-            </div>
+    <div className={`my-5 select-none ${className}`}>
+      <div className="flex flex-col items-start gap-4 md:flex-row md:items-start md:gap-6">
+        <div className="relative inline-block rounded-[10px] border-[3px] border-dashed border-[#832c87] bg-white">
+          <canvas
+            ref={canvasRef}
+            width={width}
+            height={height}
+            className={`block max-w-full rounded-[7px] touch-none ${
+              isEraser ? 'cursor-grab' : 'cursor-crosshair'
+            }`}
+            style={{ maxWidth: '500px', width: '100%', height: 'auto' }}
+            onMouseDown={(e) => handlePointerDown(e.clientX, e.clientY)}
+            onMouseMove={(e) => handlePointerMove(e.clientX, e.clientY)}
+            onMouseUp={handlePointerUp}
+            onMouseLeave={handlePointerUp}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              const touch = e.touches[0];
+              handlePointerDown(touch.clientX, touch.clientY);
+            }}
+            onTouchMove={(e) => {
+              e.preventDefault();
+              const touch = e.touches[0];
+              handlePointerMove(touch.clientX, touch.clientY);
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              handlePointerUp();
+            }}
+          />
+          <div className="pointer-events-none absolute left-2.5 top-2.5 rounded-[15px] bg-[#832c87]/10 px-2.5 py-1 text-xs font-bold text-[#832c87]">
+            {hint}
           </div>
         </div>
-      </div>
 
-      <div className="relative inline-block rounded-[10px] border-[3px] border-dashed border-[#832c87] bg-white">
-        <canvas
-          ref={canvasRef}
-          width={width}
-          height={height}
-          className={`block max-w-full rounded-[7px] touch-none ${
-            isEraser ? 'cursor-grab' : 'cursor-crosshair'
-          }`}
-          style={{ maxWidth: '500px', width: '100%', height: 'auto' }}
-          onMouseDown={(e) => handlePointerDown(e.clientX, e.clientY)}
-          onMouseMove={(e) => handlePointerMove(e.clientX, e.clientY)}
-          onMouseUp={handlePointerUp}
-          onMouseLeave={handlePointerUp}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            handlePointerDown(touch.clientX, touch.clientY);
-          }}
-          onTouchMove={(e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            handlePointerMove(touch.clientX, touch.clientY);
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            handlePointerUp();
-          }}
-        />
-        <div className="pointer-events-none absolute left-2.5 top-2.5 rounded-[15px] bg-[#832c87]/10 px-2.5 py-1 text-xs font-bold text-[#832c87]">
-          {hint}
+        <div className="rounded-[10px] border-2 border-[#e9ecef] bg-[#f8f9fa] p-4 md:p-[15px]">
+          <div className="flex flex-col gap-4">
+            <div className="text-left">
+              <label className="mb-2 block text-sm font-bold text-[#333]">🎨 ESCOLHA A COR:</label>
+              <div className="flex flex-wrap items-center gap-2">
+                {COLORS.map((color) => (
+                  <button
+                    key={color}
+                    type="button"
+                    title={color}
+                    onClick={() => handleColorSelect(color)}
+                    className={`h-[35px] w-[35px] rounded-full border-[3px] transition hover:scale-110 ${
+                      !isEraser && currentColor === color
+                        ? 'border-[#832c87] shadow-[0_0_10px_rgba(131,44,135,0.5)]'
+                        : 'border-transparent'
+                    }`}
+                    style={{ backgroundColor: color }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="text-left">
+              <label className="mb-2 block text-sm font-bold text-[#333]">🖌️ TAMANHO:</label>
+              <div className="flex flex-wrap items-center gap-2">
+                {BRUSH_SIZES.map((size) => (
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => setCurrentSize(size)}
+                    className={`cursor-pointer rounded-full bg-[#333] transition hover:scale-110 ${
+                      BRUSH_SIZE_CLASS[size]
+                    } ${
+                      currentSize === size
+                        ? 'border-2 border-[#832c87] shadow-[0_0_8px_rgba(131,44,135,0.5)]'
+                        : 'border-2 border-transparent'
+                    }`}
+                    aria-label={`Tamanho ${size}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="text-left">
+              <label className="mb-2 block text-sm font-bold text-[#333]">🔧 AÇÕES:</label>
+              <div className="flex flex-col items-stretch gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsEraser((v) => !v)}
+                  className={`rounded-[5px] px-3 py-2 text-sm text-white transition hover:-translate-y-0.5 ${
+                    isEraser
+                      ? 'bg-[#e67e22] shadow-[0_0_10px_rgba(230,126,34,0.5)]'
+                      : 'bg-[#6c757d]'
+                  }`}
+                >
+                  {isEraser ? '🧹 ATIVO' : '🧹 BORRACHA'}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleClear}
+                  className="rounded-[5px] bg-[#dc3545] px-3 py-2 text-sm text-white transition hover:-translate-y-0.5"
+                >
+                  🗑️ LIMPAR
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

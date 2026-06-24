@@ -36,7 +36,7 @@ function PalavrasBambolhe() {
         className="my-5 rounded-lg border-2 border-[#832c87] bg-white px-5 py-2.5 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
         onClick={() => setShowResposta((v) => !v)}
       >
-        {showResposta ? 'Ocultar resposta' : 'Revelar resposta'}
+        {showResposta ? 'Ocultar resposta' : 'Mostrar a resposta'}
       </button>
     </div>
   );

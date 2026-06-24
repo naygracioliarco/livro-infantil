@@ -65,6 +65,7 @@ function ContagemQuadrados({ storageKey, className = '' }: ContagemQuadradosProp
 
   return (
     <div className={`my-6 space-y-4 ${className}`}>
+      <p className="text-sm text-gray-700">Clique nos quadradinhos para pintar.</p>
       {ROWS.map((row) => (
         <div key={row.id} className="flex items-center gap-4 md:gap-6">
           <span
@@ -79,16 +80,12 @@ function ContagemQuadrados({ storageKey, className = '' }: ContagemQuadradosProp
                 key={index}
                 type="button"
                 onClick={() => toggleSquare(row.id, index)}
-                className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f6b221] bg-white transition hover:bg-[#fff8eb] focus:outline-none focus:ring-2 focus:ring-[#f6b221]/50 md:h-12 md:w-12"
+                className={`h-10 w-10 rounded-lg border-2 border-[#f6b221] transition focus:outline-none focus:ring-2 focus:ring-[#f6b221]/50 md:h-12 md:w-12 ${
+                  marked ? 'bg-[#80298f]' : 'bg-white hover:bg-[#fff8eb]'
+                }`}
                 aria-label={`${row.label}, quadradinho ${index + 1}${marked ? ', marcado' : ''}`}
                 aria-pressed={marked}
-              >
-                {marked && (
-                  <span className="text-2xl font-bold leading-none text-[#ED168F] md:text-3xl" aria-hidden>
-                    ×
-                  </span>
-                )}
-              </button>
+              />
             ))}
           </div>
         </div>

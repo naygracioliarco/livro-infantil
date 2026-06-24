@@ -917,7 +917,7 @@ PARA BRINCAR E SE DIVERTIR!`}
               leftItems={MATCH_PAG16_LEFT}
               rightItems={MATCH_PAG16_RIGHT}
               storageKey="livro:ligar-pag16-bolas-jogos"
-              hint="Clique em uma imagem da esquerda: a linha segue o mouse ou o dedo. Depois clique na imagem correspondente à direita para fechar a ligação."
+              hint="Observe as imagens nas duas colunas, e clique nas correspondentes"
             />
           </div>
           <p className="text-[10px] text-slate-600 mt-2">Imagens: Lustre Art Group/stock.adobe.com; vectorsanta/stock.adobe.com
@@ -1162,7 +1162,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-5 py-2.5 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
             onClick={() => setPag18ShowContorno((v) => !v)}
           >
-            {pag18ShowContorno ? 'Voltar à imagem original' : 'Mostrar quem é o pegador'}
+            {pag18ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta'}
           </button>
           <p className="mb-4 indent-6">QUE TAL BRINCAR DE PEGA-PEGA COM OS COLEGAS? DECIDAM JUNTOS
             QUEM SERÁ O PEGADOR E DIVIRTAM-SE. DEPOIS, NO QUADRO ABAIXO,
@@ -1205,7 +1205,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-4 py-2 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
             onClick={() => setPag19ShowContorno((v) => !v)}
           >
-            {pag19ShowContorno ? 'Voltar à imagem original' : 'Mostrar a imagem que se parece com a brincadeira'}
+            {pag19ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta'}
           </button>
           <p className="mb-4 indent-6">DEPOIS DE SE DIVERTIR BRINCANDO
             DE <strong>PEGA-PEGA SOMBRAS</strong>, QUE TAL
@@ -1271,7 +1271,11 @@ PARA BRINCAR E SE DIVERTIR!`}
               <p className="mb-4">BEM NA HORA DO GALO CANTAR!</p>
             </div>
           </CaixaTexto>
-          <div className="flex w-full justify-center">
+         
+          <p className="mb-4 indent-6">ESCOLHA TRÊS CORES DIFERENTES DE LÁPIS DE COR: UMA PARA A
+            PALAVRA <strong>GATO</strong>, UMA PARA A PALAVRA <strong>RATO</strong>, E OUTRA PARA A PALAVRA <strong>GALO</strong>. DEPOIS, ENCONTRE ESSAS TRÊS PALAVRAS NO TEXTO ACIMA
+            E PINTE CADA UMA DELAS COM AS CORES QUE VOCÊ ESCOLHEU.</p>
+            <div className="flex w-full justify-center">
             <GameModal
               thumbnailSrc="images/thumbDigi.svg"
               thumbnailAlt="Abrir vídeo Escola Digital"
@@ -1303,9 +1307,6 @@ PARA BRINCAR E SE DIVERTIR!`}
               </div>
             </GameModal>
           </div>
-          <p className="mb-4 indent-6">ESCOLHA TRÊS CORES DIFERENTES DE LÁPIS DE COR: UMA PARA A
-            PALAVRA <strong>GATO</strong>, UMA PARA A PALAVRA <strong>RATO</strong>, E OUTRA PARA A PALAVRA <strong>GALO</strong>. DEPOIS, ENCONTRE ESSAS TRÊS PALAVRAS NO TEXTO ACIMA
-            E PINTE CADA UMA DELAS COM AS CORES QUE VOCÊ ESCOLHEU.</p>
           <p className="mb-4 indent-6">QUANTAS VEZES AS PALAVRAS <strong>GATO</strong>, <strong>RATO</strong> E <strong>GALO</strong> APARECEM NO TEXTO?
             PINTE OS QUADRINHOS QUE REPRESENTAM CADA QUANTIDADE. </p>
 
@@ -1349,7 +1350,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             className="my-5 rounded-lg border-2 border-[#832c87] bg-white px-5 py-2.5 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
             onClick={() => setPag21ShowResposta((v) => !v)}
           >
-            {pag21ShowResposta ? 'Voltar à imagem original' : 'Revelar resposta'}
+            {pag21ShowResposta ? 'Voltar à imagem original' : 'Mostrar a resposta'}
           </button>
           <div className="my-6">
             <ImageFillQuestion
@@ -1748,7 +1749,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-4 py-2 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
             onClick={() => setPag25ShowContorno((v) => !v)}
           >
-            {pag25ShowContorno ? 'Voltar à imagem original' : 'Mostrar os objetos que têm formato circular.'}
+            {pag25ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta.'}
           </button>
           <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
             <p className="indent-6 md:flex-1">

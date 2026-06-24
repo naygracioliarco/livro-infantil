@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import TeacherButton from './TeacherButton';
 import { chapterQuestions } from '../data/questions';
@@ -16,7 +16,6 @@ import CabriolaTituloInterativo from './CabriolaTituloInterativo';
 import MatchConnectQuestion, { type MatchConnectItem } from './MatchConnectQuestion';
 import ImageFillQuestion, { type ImageFillItem } from './ImageFillQuestion';
 import GameModal from './GameModal';
-import BookPageMode from './BookPageMode';
 import AreaDesenho from './AreaDesenho';
 import ContagemQuadrados from './ContagemQuadrados';
 import PalavrasBambolhe from './PalavrasBambolhe';
@@ -194,12 +193,10 @@ function Book() {
     }, 500);
   };
 
-  const pageContainerRef = useRef<HTMLDivElement>(null);
-
   return (
     <div className="min-h-screen bg-gray-200 w-full">
       <div className="mx-auto bg-white shadow-2xl overflow-hidden" style={{ maxWidth: '63%', marginLeft: 'auto', marginRight: 'auto' }}>
-        <div ref={pageContainerRef} className="p-8 md:p-12">
+        <div className="p-8 md:p-12">
           {/* Paginação */}
           <Pagination currentPage={currentPage} />
           <Pagination currentPage={11} />
@@ -1976,8 +1973,6 @@ QUE VOCÊ MAIS GOSTOU.
           <img src="/images/setaTopo.svg" alt="Voltar ao início do livro" />
         </button>
       )}
-
-      <BookPageMode containerRef={pageContainerRef} initialPage={currentPage} />
     </div>
   );
 }

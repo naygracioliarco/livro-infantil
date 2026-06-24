@@ -5,6 +5,7 @@ import { chapterQuestions } from '../data/questions';
 import { UserAnswers, Question } from '../types/questions';
 import { loadAnswers, saveAnswers } from '../utils/storage';
 import Pagination from './Pagination';
+import PaginationDupla from './PaginationDupla';
 import ParaFamilia from './ParaFamilia';
 import CaixaTexto from './CaixaTexto';
 import DescobertasCard from './DescobertasCard';
@@ -21,10 +22,31 @@ import ContagemQuadrados from './ContagemQuadrados';
 import PalavrasBambolhe from './PalavrasBambolhe';
 const pag16Img = (n: number) => `/images/pag16_img${n}.png`;
 
+const BolaCaption = ({ tipo, color }: { tipo: string; color: string }) => (
+  <span
+    className="inline-block rounded-lg border-2 bg-white px-3 py-1 text-sm font-bold uppercase text-[#4B4B4B] md:text-base"
+    style={{ borderColor: color }}
+  >
+    Bola de <span style={{ color }}>{tipo}</span>
+  </span>
+);
+
+const MATCH_PAG16_CAPTIONS = [
+  { tipo: 'Basquete', color: '#3498db' },
+  { tipo: 'Futebol', color: '#2C7049' },
+  { tipo: 'Tênis', color: '#e67e22' },
+];
+
 const MATCH_PAG16_LEFT: MatchConnectItem[] = [1, 2, 3].map((n) => ({
   id: `pag16-left-${n}`,
   imageSrc: pag16Img(n),
   alt: '',
+  caption: (
+    <BolaCaption
+      tipo={MATCH_PAG16_CAPTIONS[n - 1].tipo}
+      color={MATCH_PAG16_CAPTIONS[n - 1].color}
+    />
+  ),
 }));
 
 /** Ordem fixa na coluna da direita (embaralhada em relação à esquerda). */
@@ -196,10 +218,9 @@ function Book() {
   return (
     <div className="min-h-screen bg-gray-200 w-full">
       <div className="mx-auto bg-white shadow-2xl overflow-hidden" style={{ maxWidth: '63%', marginLeft: 'auto', marginRight: 'auto' }}>
-        <div className="p-8 md:p-12">
+        <div className="px-8 pb-8 pt-2 md:px-12 md:pb-12 md:pt-3">
           {/* Paginação */}
-          <Pagination currentPage={currentPage} />
-          <Pagination currentPage={11} />
+          <PaginationDupla firstPage={10} secondPage={11} />
           {/* Botão do professor – Página 4 */}
           <div className="my-6">
             <TeacherButton
@@ -326,7 +347,7 @@ function Book() {
                 padding: '8px 24px',
                 borderRadius: '999px',
                 backgroundColor: '#ffffff',
-                border: '4px solid #832c87',
+                border: '4px dashed #832c87',
               }}
             >
               <p
@@ -335,7 +356,7 @@ function Book() {
                   color: '#00A99D',
                   fontFamily: 'Ubuntu, sans-serif',
                   fontWeight: 700,
-                  fontSize: '18px',
+                  fontSize: '30px',
                   textAlign: 'center',
                   textTransform: 'uppercase',
                   lineHeight: 1.2,
@@ -343,7 +364,7 @@ function Book() {
               >
                 QUANTA ENERGIA EU TENHO
                 <br />
-                <span style={{ fontSize: '20px' }}>PARA BRINCAR!</span>
+                <span style={{ fontSize: '30px' }}>PARA BRINCAR!</span>
               </p>
             </div>
           </div>
@@ -359,8 +380,7 @@ function Book() {
           />
 
           {/* PÁGINA 12 e 13 – título estilizado + imagem de fundo */}
-          <Pagination currentPage={12} />
-          <Pagination currentPage={13} />
+          <PaginationDupla firstPage={12} secondPage={13} />
           {/* Botão do professor – Página 5 */}
           <div className="my-6">
             <TeacherButton
@@ -476,16 +496,16 @@ function Book() {
                 padding: '8px 24px',
                 borderRadius: '999px',
                 backgroundColor: '#ffffff',
-                border: '4px solid #832c87',
+                border: '3px dashed #00A99D',
               }}
             >
               <p
                 style={{
                   margin: 0,
-                  color: '#00A99D',
+                  color: '#832c87',
                   fontFamily: 'Ubuntu, sans-serif',
                   fontWeight: 700,
-                  fontSize: '18px',
+                  fontSize: '30px',
                   textAlign: 'center',
                   textTransform: 'uppercase',
                   lineHeight: 1.2,
@@ -766,7 +786,15 @@ PARA BRINCAR E SE DIVERTIR!`}
             IMAGENS NA ORDEM CORRETA.
           </p>
           <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
-          <CaixaTexto title='Bola de meia'>
+          <CaixaTexto
+            title={
+              <span className="inline-flex items-center justify-center gap-3">
+                Bola de meia
+                <img src="/images/pag14_img1.png" alt="" className="inline-block max-h-16 w-auto" />
+              </span>
+            }
+            centered
+          >
             <BolaDeMeiaQuestion />
 
           </CaixaTexto>
@@ -1323,18 +1351,6 @@ PARA BRINCAR E SE DIVERTIR!`}
           >
             {pag21ShowResposta ? 'Voltar à imagem original' : 'Revelar resposta'}
           </button>
-
-          <ul className="list-disc marker:text-[#832c87] ml-6">
-            <li>VOCÊ PERCEBEU ALGO DE PARECIDO ENTRE ESSAS PALAVRAS?
-              CONVERSE COM SEUS COLEGAS E O(A) PROFESSOR(A).  </li>
-            <p>VOCÊ LEMBRA QUAIS SÃO AS REGRAS DO <strong>PEGA-PEGA SOMBRAS</strong>? </p>
-            <li>CONVERSE COM OS COLEGAS E O(A) PROFESSOR(A) PARA VOCÊS
-              CONSTRUÍREM JUNTOS UM CARTAZ COM AS REGRAS DA BRINCADEIRA.  </li>
-            <li>QUE TAL CRIAR UMA REGRA DIFERENTE PARA O PEGA-PEGA
-              SOMBRAS? DEPOIS QUE TODOS DECIDIREM QUAL SERÁ A NOVA
-              REGRA, REGISTRE-A NO CARTAZ QUE VOCÊS PRODUZIRAM!  </li>
-          </ul>
-
           <div className="my-6">
             <ImageFillQuestion
               items={FILL_PAG21_ITEMS.map((item) =>
@@ -1353,6 +1369,18 @@ PARA BRINCAR E SE DIVERTIR!`}
           </div>
           <p className="text-[10px] text-slate-600 mt-2">fa5/Shutterstock
           </p>
+          <ul className="list-disc marker:text-[#832c87] ml-6">
+            <li>VOCÊ PERCEBEU ALGO DE PARECIDO ENTRE ESSAS PALAVRAS?
+              CONVERSE COM SEUS COLEGAS E O(A) PROFESSOR(A).  </li>
+            <p>VOCÊ LEMBRA QUAIS SÃO AS REGRAS DO <strong>PEGA-PEGA SOMBRAS</strong>? </p>
+            <li>CONVERSE COM OS COLEGAS E O(A) PROFESSOR(A) PARA VOCÊS
+              CONSTRUÍREM JUNTOS UM CARTAZ COM AS REGRAS DA BRINCADEIRA.  </li>
+            <li>QUE TAL CRIAR UMA REGRA DIFERENTE PARA O PEGA-PEGA
+              SOMBRAS? DEPOIS QUE TODOS DECIDIREM QUAL SERÁ A NOVA
+              REGRA, REGISTRE-A NO CARTAZ QUE VOCÊS PRODUZIRAM!  </li>
+          </ul>
+
+          
           <ParaFamilia
             text="AS CRIANÇAS FORAM CONVIDADAS A SE DIVERTIREM COM BRINCADEIRAS QUE EXIGEM VELOCIDADE E ATENÇÃO. 
            

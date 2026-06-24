@@ -9,6 +9,7 @@ function DescobertasCard({ text }: DescobertasCardProps) {
       style={{
         maxWidth: '520px',
         position: 'relative',
+        padding: '10px',
       }}
     >
       <div
@@ -24,10 +25,10 @@ function DescobertasCard({ text }: DescobertasCardProps) {
         <p
           style={{
             margin: 0,
-            color: '#4b5563',
+            color: '#000000',
             fontFamily: 'Ubuntu, sans-serif',
             fontWeight: 300,
-            fontSize: '32px',
+            fontSize: '20px',
             lineHeight: 1.45,
             textTransform: 'uppercase',
             whiteSpace: 'pre-line',
@@ -40,7 +41,7 @@ function DescobertasCard({ text }: DescobertasCardProps) {
       <div
         style={{
           position: 'absolute',
-          top: '-22px',
+          top: '-12px',
           left: '50%',
           transform: 'translateX(-50%) ',
           background: '#ffffff',

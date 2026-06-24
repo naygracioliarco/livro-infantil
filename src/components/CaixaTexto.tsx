@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 interface CaixaTextoProps {
-  title: string;
+  title: ReactNode;
   children: ReactNode;
   backgroundColor?: string;
   columns?: number;

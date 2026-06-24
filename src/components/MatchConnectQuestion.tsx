@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 
 export type MatchConnectItem = {
   id: string;
   imageSrc?: string;
   label?: string;
   alt?: string;
+  /** Legenda exibida abaixo da imagem. */
+  caption?: ReactNode;
 };
 
 export type MatchConnection = {
@@ -79,12 +81,15 @@ function MatchConnectItemContent({ item }: { item: MatchConnectItem }) {
 
   if (item.imageSrc) {
     return (
-      <img
-        src={item.imageSrc}
-        alt={item.alt ?? ''}
-        draggable={false}
-        className="max-h-20 w-auto max-w-full object-contain md:max-h-24"
-      />
+      <span className="flex flex-col items-center gap-2">
+        <img
+          src={item.imageSrc}
+          alt={item.alt ?? ''}
+          draggable={false}
+          className="max-h-20 w-auto max-w-full object-contain md:max-h-24"
+        />
+        {item.caption ? item.caption : null}
+      </span>
     );
   }
 

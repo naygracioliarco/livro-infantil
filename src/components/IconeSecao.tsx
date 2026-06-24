@@ -5,6 +5,8 @@ interface IconeSecaoProps {
   matematica?: boolean;
   experiencias?: boolean;
   leitura?: boolean;
+  natureza?: boolean;
+  arte?: boolean;
 }
 
 const ICONES = [
@@ -14,9 +16,11 @@ const ICONES = [
   { key: 'matematica', src: '/images/icones-matematica.png', alt: 'Matemática' },
   { key: 'experiencias', src: '/images/icones_experiencias.png', alt: 'Campos de experiências' },
   { key: 'leitura', src: '/images/icones-leitura.png', alt: 'Leitura' },
+  { key: 'natureza', src: '/images/icones-natureza.png', alt: 'Natureza' },
+  { key: 'arte', src: '/images/icones-arte.png', alt: 'Arte' },
 ] as const;
 
-function IconeSecao({ emocoes, conversas, registros, matematica, experiencias, leitura }: IconeSecaoProps) {
+function IconeSecao({ emocoes, conversas, registros, matematica, experiencias, leitura, natureza, arte }: IconeSecaoProps) {
   const ativos: Record<string, boolean | undefined> = {
     emocoes,
     conversas,
@@ -24,6 +28,8 @@ function IconeSecao({ emocoes, conversas, registros, matematica, experiencias, l
     matematica,
     experiencias,
     leitura,
+    natureza,
+    arte,
   };
 
   const visiveis = ICONES.filter((icone) => ativos[icone.key]);

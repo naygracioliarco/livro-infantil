@@ -66,6 +66,7 @@ replaceInDir(resourcesDir, ['.js', '.css', '.html'], replacementsStep1);
 const replacementsStep2 = [
   ['"/resources/', '"resources/'],
   ["'/resources/", "'resources/"],
+  ['`/resources/', '`resources/'],
   ['(/resources/', '(resources/'],
   ['url(/resources/', 'url(resources/'],
   ['url("/resources/', 'url("resources/'],

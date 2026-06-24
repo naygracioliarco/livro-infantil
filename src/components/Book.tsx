@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import TeacherButton from './TeacherButton';
+import IconeSecao from './IconeSecao';
 import { chapterQuestions } from '../data/questions';
 import { UserAnswers, Question } from '../types/questions';
 import { loadAnswers, saveAnswers } from '../utils/storage';
@@ -534,7 +535,8 @@ PARA BRINCAR E SE DIVERTIR!`}
           />
           <Pagination currentPage={14} />
           {/* Botão do professor – Página 14 */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros conversas />
             <TeacherButton
 
               content={
@@ -785,7 +787,6 @@ PARA BRINCAR E SE DIVERTIR!`}
             COMO MONTAR UMA BOLA DE MEIA. DEPOIS, DESTAQUE E COLE AS
             IMAGENS NA ORDEM CORRETA.
           </p>
-          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <CaixaTexto
             title={
               <span className="inline-flex items-center justify-center gap-3">
@@ -804,7 +805,8 @@ PARA BRINCAR E SE DIVERTIR!`}
           </ul>
           <Pagination currentPage={15} />
           {/* Conteúdo do botão do professor */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao experiencias leitura />
             <TeacherButton
               content={
                 <>
@@ -823,7 +825,6 @@ PARA BRINCAR E SE DIVERTIR!`}
             QUE TAL CONHECER OUTRA BRINCADEIRA COM BOLA DE MEIA? OUÇA
             A LEITURA DAS REGRAS QUE O(A) PROFESSOR(A) VAI FAZER.
           </p>
-          <img src="/images/icons-2a.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <CaixaTexto title=''>
             <div className="mb-4 indent-6">
               <CabriolaTituloInterativo />
@@ -863,6 +864,11 @@ PARA BRINCAR E SE DIVERTIR!`}
               SEGUE.
             </p>
           </CaixaTexto>
+            <div className="flex flex-col items-end my-6">
+              <img src="/images/pag15_img1.png" alt="" className="noborder max-w-[25%]" style={{ cursor: 'default' }} />
+              <p className="text-[10px] text-slate-600 mt-2">Imagem gerada usando Adobe Firefly
+              </p>
+            </div>
           <ul className="list-disc marker:text-[#832c87] ml-6">
             <li>PINTE O TÍTULO DA BRINCADEIRA.</li>
             <li>NO TÍTULO DA BRINCADEIRA TEM UMA RIMA. COM AJUDA DOS
@@ -871,7 +877,8 @@ PARA BRINCAR E SE DIVERTIR!`}
 
           <Pagination currentPage={16} />
           {/* Conteúdo do botão do professor */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros />
             <TeacherButton
               content={
                 <>
@@ -911,7 +918,6 @@ PARA BRINCAR E SE DIVERTIR!`}
             LIGUE AS IMAGENS DAS BOLAS AOS JOGOS EM QUE ELAS SÃO
             USADAS. DEPOIS, PINTE AS BOLAS COMO DESEJAR.
           </p>
-          <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <div className="my-8">
             <MatchConnectQuestion
               leftItems={MATCH_PAG16_LEFT}
@@ -924,7 +930,8 @@ PARA BRINCAR E SE DIVERTIR!`}
           </p>
           <Pagination currentPage={17} />
           {/* Conteúdo do botão do professor */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros />
             <TeacherButton
               content={
                 <>
@@ -948,7 +955,6 @@ PARA BRINCAR E SE DIVERTIR!`}
             USADAS. DEPOIS, ESCREVA COMO SOUBER O NOME DO JOGO NOS
             ESPAÇOS CORRETOS.
           </p>
-          <img src="/images/icones_registros.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <div className="my-6">
             <ImageFillQuestion
               items={FILL_PAG17_ITEMS}
@@ -963,7 +969,8 @@ PARA BRINCAR E SE DIVERTIR!`}
 
           <Pagination currentPage={18} />
           {/* Conteúdo do botão do professor - Tabela comparativa */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros conversas />
             <TeacherButton
               content={
                 <>
@@ -1140,7 +1147,6 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <p className="mb-4 indent-6">OBSERVE A IMAGEM. DO QUE AS CRIANÇAS ESTÃO BRINCANDO?</p>{/* Imagem */}
           <div className="flex flex-col items-center my-6">
             <img
@@ -1172,7 +1178,8 @@ PARA BRINCAR E SE DIVERTIR!`}
 
           <Pagination currentPage={19} />
           {/* Conteúdo do botão do professor */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros leitura />
             <TeacherButton
               content={
                 <>
@@ -1182,7 +1189,6 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <img src="/images/icons-2c.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <p className="mb-4 indent-6">
             VOCÊ JÁ OUVIU FALAR DE <strong>PEGA-PEGA SOMBRAS</strong>? OUÇA
             A EXPLICAÇÃO QUE O(A) PROFESSOR(A) VAI DAR SOBRE
@@ -1246,7 +1252,8 @@ PARA BRINCAR E SE DIVERTIR!`}
 
           <Pagination currentPage={20} />
           {/* Conteúdo do botão do professor */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros matematica leitura />
             <TeacherButton
               content={
                 <>
@@ -1256,7 +1263,6 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <img src="/images/icons-2e.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <p className="mb-4 indent-6">OUÇA A LEITURA DE UM TEXTO QUE LEMBRA A BRINCADEIRA <strong>PEGA-PEGA</strong>. DEPOIS, FAÇA O QUE SE PEDE.</p>
           <CaixaTexto title="GATO E RATO" centered>
             <div>
@@ -1271,11 +1277,11 @@ PARA BRINCAR E SE DIVERTIR!`}
               <p className="mb-4">BEM NA HORA DO GALO CANTAR!</p>
             </div>
           </CaixaTexto>
-         
+
           <p className="mb-4 indent-6">ESCOLHA TRÊS CORES DIFERENTES DE LÁPIS DE COR: UMA PARA A
             PALAVRA <strong>GATO</strong>, UMA PARA A PALAVRA <strong>RATO</strong>, E OUTRA PARA A PALAVRA <strong>GALO</strong>. DEPOIS, ENCONTRE ESSAS TRÊS PALAVRAS NO TEXTO ACIMA
             E PINTE CADA UMA DELAS COM AS CORES QUE VOCÊ ESCOLHEU.</p>
-            <div className="flex w-full justify-center">
+          <div className="flex w-full justify-center">
             <GameModal
               thumbnailSrc="images/thumbDigi.svg"
               thumbnailAlt="Abrir vídeo Escola Digital"
@@ -1317,7 +1323,8 @@ PARA BRINCAR E SE DIVERTIR!`}
           </ul>
           <Pagination currentPage={21} />
           {/* Conteúdo do botão do professor */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros conversas />
             <TeacherButton
               content={
                 <>
@@ -1340,7 +1347,6 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <p className="mb-4 indent-6">PINTE A FIGURA DO ÚNICO ANIMAL QUE NÃO ESTAVA BRINCANDO NA
             HISTÓRIA <strong>GATO E RATO</strong>. DEPOIS, ESCREVA, COMO SOUBER, O NOME DOS
             ANIMAIS QUE APARECEM NAS ILUSTRAÇÕES ABAIXO.
@@ -1381,7 +1387,7 @@ PARA BRINCAR E SE DIVERTIR!`}
               REGRA, REGISTRE-A NO CARTAZ QUE VOCÊS PRODUZIRAM!  </li>
           </ul>
 
-          
+
           <ParaFamilia
             text="AS CRIANÇAS FORAM CONVIDADAS A SE DIVERTIREM COM BRINCADEIRAS QUE EXIGEM VELOCIDADE E ATENÇÃO. 
            
@@ -1396,7 +1402,8 @@ PARA BRINCAR E SE DIVERTIR!`}
 
           <Pagination currentPage={22} />
           {/* Conteúdo do botão do professor - Tabela comparativa */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao registros conversas />
             <TeacherButton
               content={
                 <>
@@ -1638,7 +1645,6 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <img src="/images/icons-2j.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <ul className="list-disc marker:text-[#832c87] ml-6">
             <li>VOCÊ CONHECE O <strong>BAMBOLÊ</strong>?</li>
             <li>JÁ PARTICIPOU DE ALGUMA BRINCADEIRA COM
@@ -1661,7 +1667,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             O(A) PROFESSOR(A). </p>
 
           <Pagination currentPage={23} />
-          <img src="/images/icons-2h.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
+          <IconeSecao emocoes experiencias leitura />
           <p className="mb-4 indent-6">BRINCAR DE BAMBOLÊ É UM JEITO DIVERTIDO DE GASTAR ENERGIA,
             NÃO É MESMO? OUÇA A LEITURA DO POEMA <strong>BAMBOLÊ</strong>. </p>
           <CaixaTexto title="BAMBOLÊ" centered>
@@ -1691,12 +1697,14 @@ PARA BRINCAR E SE DIVERTIR!`}
           <p className="text-[10px] text-slate-600 mt-2">SAE DIGITAL S/A
           </p>
           <Pagination currentPage={24} />
-          <img src="/images/icons-22.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
+          <IconeSecao experiencias />
           <p className="mb-4 indent-6">VOCÊ SABIA QUE O BAMBOLÊ NÃO É USADO APENAS EM BRINCADEIRAS?
             ELE TAMBÉM É USADO EM UM ESPORTE. OBSERVE A IMAGEM ABAIXO.</p>
-          <img src="/images/pag24_img1.png" alt="" className="noborder" style={{ cursor: 'default' }} />
-          <p className="text-[10px] text-slate-600 mt-2">Seventyfour/stock.adobe.com
-          </p>
+          <div className="flex flex-col items-center my-6">
+            <img src="/images/pag24_img1.png" alt="" className="noborder max-w-[60%]" style={{ cursor: 'default' }} />
+            <p className="text-[10px] text-slate-600 mt-2">Seventyfour/stock.adobe.com
+            </p>
+          </div>
           <p className="mb-4 indent-6">VOCÊ CONHECE ESSE ESPORTE? ELE SE CHAMA <strong>GINÁSTICA RÍTMICA</strong>.
             NESSA GINÁSTICA, AS ATLETAS DANÇAM E USAM ALGUNS OBJETOS
             ENQUANTO SE MOVIMENTAM, COMO BAMBOLÊ, BOLA E FITA. ISSO
@@ -1713,13 +1721,16 @@ PARA BRINCAR E SE DIVERTIR!`}
               FAZER ELE GIRAR
               POR MAIS TEMPO.</li>
           </ul>
-          <img src="/images/pag24_img2.png" alt="" className="noborder" style={{ cursor: 'default' }} />
-          <p className="text-[10px] text-slate-600 mt-2">Robert Kneschke/stock.adobe.com
-          </p>
+          <div className="flex flex-col items-center my-6">
+            <img src="/images/pag24_img2.png" alt="" className="noborder max-w-[60%]" style={{ cursor: 'default' }} />
+            <p className="text-[10px] text-slate-600 mt-2">Robert Kneschke/stock.adobe.com
+            </p>
+          </div>
 
           <Pagination currentPage={25} />
           {/* Conteúdo do botão do professor */}
-          <div className="my-6">
+          <div className="my-6 flex items-start">
+            <IconeSecao matematica />
             <TeacherButton
               content={
                 <>
@@ -1731,7 +1742,6 @@ PARA BRINCAR E SE DIVERTIR!`}
               }
             />
           </div>
-          <img src="/images/icons-2m.png" alt="" className="noborder" style={{ cursor: 'default', width: '10%', height: 'auto' }} />
           <p className="mb-4 indent-6">OBSERVE A IMAGEM ABAIXO E PINTE OS OBJETOS QUE TÊM
             O FORMATO CIRCULAR, COMO O BAMBOLÊ.</p>
           {/* Imagem */}
@@ -1749,7 +1759,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-4 py-2 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
             onClick={() => setPag25ShowContorno((v) => !v)}
           >
-            {pag25ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta.'}
+            {pag25ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta'}
           </button>
           <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
             <p className="indent-6 md:flex-1">
@@ -1949,7 +1959,7 @@ QUE UTILIZA O BAMBOLÊ NAS APRESENTAÇÕES." />
               </p>
             </div>
           </div>
-          <p>PINTE A QUANTIDADE DE CORAÇÕES 
+          <p>PINTE A QUANTIDADE DE CORAÇÕES
             QUE REPRESENTA O QUANTO VOCÊ QUE REPRESENTA O QUANTO VOCÊ
             GOSTOU DAS VIVÊNCIAS AO LONGO GOSTOU DAS VIVÊNCIAS AO LONGO
             DA UNIDADE. </p>
@@ -1977,9 +1987,9 @@ QUE UTILIZA O BAMBOLÊ NAS APRESENTAÇÕES." />
                   lineHeight: 1.2,
                 }}
               >
-               RELEMBRE AS EXPERIÊNCIAS VIVENCIADAS AO LONGO RELEMBRE AS EXPERIÊNCIAS VIVENCIADAS AO LONGO 
-DA UNIDADE. DEPOIS, REGISTRE ABAIXO A VIVÊNCIA DE DA UNIDADE. DEPOIS, REGISTRE ABAIXO A VIVÊNCIA DE 
-QUE VOCÊ MAIS GOSTOU.
+                RELEMBRE AS EXPERIÊNCIAS VIVENCIADAS AO LONGO RELEMBRE AS EXPERIÊNCIAS VIVENCIADAS AO LONGO
+                DA UNIDADE. DEPOIS, REGISTRE ABAIXO A VIVÊNCIA DE DA UNIDADE. DEPOIS, REGISTRE ABAIXO A VIVÊNCIA DE
+                QUE VOCÊ MAIS GOSTOU.
 
               </p>
             </div>

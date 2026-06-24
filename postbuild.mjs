@@ -61,6 +61,20 @@ const replacementsStep1 = [
 replaceInFile(path.join(htmlDir, 'index.html'), replacementsStep1);
 replaceInDir(resourcesDir, ['.js', '.css', '.html'], replacementsStep1);
 
+// Handle public assets referenced WITHOUT a leading slash (e.g. publicUrl('images/..'))
+// These come from runtime helpers and are not caught by the '/images/' rule above.
+const replacementsStep1b = [
+  ['"images/', '"resources/images/'],
+  ["'images/", "'resources/images/"],
+  ['`images/', '`resources/images/'],
+  ['"fonts/', '"resources/fonts/'],
+  ["'fonts/", "'resources/fonts/"],
+  ['`fonts/', '`resources/fonts/'],
+];
+
+replaceInFile(path.join(htmlDir, 'index.html'), replacementsStep1b);
+replaceInDir(resourcesDir, ['.js', '.css', '.html'], replacementsStep1b);
+
 // Then, remove leading slashes so paths are relative to html/index.html
 // This avoids issues when the hosting environment does not serve "/" as this folder.
 const replacementsStep2 = [

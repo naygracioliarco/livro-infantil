@@ -218,8 +218,8 @@ function Book() {
 
   return (
     <div className="min-h-screen bg-gray-200 w-full">
-      <div className="mx-auto bg-white shadow-2xl overflow-hidden" style={{ maxWidth: '63%', marginLeft: 'auto', marginRight: 'auto' }}>
-        <div className="px-8 pb-8 pt-2 md:px-12 md:pb-12 md:pt-3">
+      <div className="mx-auto w-full bg-white shadow-2xl overflow-hidden md:max-w-[63%]">
+        <div className="px-3 pb-8 pt-2 md:px-12 md:pb-12 md:pt-3">
           {/* Paginação */}
           <PaginationDupla firstPage={10} secondPage={11} />
           {/* Botão do professor – Página 4 */}
@@ -1749,7 +1749,7 @@ PARA BRINCAR E SE DIVERTIR!`}
             <img
               src={pag25ShowContorno ? '/images/pag25_img1.png' : '/images/58.png'}
               alt=""
-              className="max-w-[60%]"
+              className="max-w-[80%]"
             />
             <p className="text-[10px] text-slate-600 mt-2">Shajamal,Tom,Ali/stock.adobe.com
             </p>

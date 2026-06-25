@@ -7,12 +7,11 @@ function Pagination({ currentPage }: PaginationProps) {
   return (
     <div
       data-page={currentPage}
-      className="flex items-center justify-center -mx-8 md:-mx-12"
+      className="flex items-center justify-center -mx-8 md:-mx-12 px-4 py-1 md:px-[360px]"
       style={{
         display: 'flex',
         width: '100vw',
         maxWidth: '100vw',
-        padding: '4px 360px',
         justifyContent: 'center',
         alignItems: 'center',
         gap: '10px',
@@ -27,7 +26,7 @@ function Pagination({ currentPage }: PaginationProps) {
         fontFamily: 'Ubuntu',
       }}
     >
-      <span>Página - {currentPage}</span>
+      <span className="whitespace-nowrap">Página - {currentPage}</span>
       <img
                   src="/images/seta.svg"
                   alt="Union"

@@ -21,8 +21,8 @@ function TeacherButton({
                 style={{
                     position: 'relative',
                     padding: '10px 30px 10px 45px',
-                    backgroundColor: '#F26522',
-                    boxShadow: '0px 4px 0px #c64f12',
+                    backgroundColor: '#80298F',
+                    boxShadow: '0px 4px 0px rgb(106, 37, 118)',
                     borderRadius: '0 30px 30px 0',
                     color: 'white',
                     fontFamily: 'Ubuntu',
@@ -39,12 +39,12 @@ function TeacherButton({
                     justifyContent: 'center',
                 }}
                 onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#E04F16';
-                    e.currentTarget.style.boxShadow = '0px 2px 0px #b13f11';
+                    e.currentTarget.style.backgroundColor = 'rgb(106, 37, 118)';
+                    e.currentTarget.style.boxShadow = '0px 2px 0px rgb(106, 37, 118)';
                 }}
                 onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#F26522';
-                    e.currentTarget.style.boxShadow = '0px 4px 0px #c64f12';
+                    e.currentTarget.style.backgroundColor = '#80298F';
+                    e.currentTarget.style.boxShadow = '0px 4px 0px rgb(106, 37, 118)';
                 }}
             >
                 <div
@@ -56,7 +56,7 @@ function TeacherButton({
                         width: '45px',
                         height: '45px',
                         borderRadius: '50%',
-                        backgroundColor: '#F26522',
+                        backgroundColor: '#80298F',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',

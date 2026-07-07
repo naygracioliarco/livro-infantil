@@ -102,3 +102,15 @@ ul.question-subitems li::marker {
     animation: none;
   }
 }
+
+/* Botão do professor: força a cor roxa mesmo se o geral.css externo da plataforma
+   definir o estilo laranja padrão com !important. */
+.professor-button {
+  background-color: #80298F !important;
+  box-shadow: 0px 4px 0px rgb(106, 37, 118) !important;
+}
+
+.professor-button:hover {
+  background-color: rgb(106, 37, 118) !important;
+  box-shadow: 0px 2px 0px rgb(106, 37, 118) !important;
+}

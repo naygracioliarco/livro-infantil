@@ -30,7 +30,7 @@ function CaixaTexto({ title, children, backgroundColor, columns, centered }: Cai
         style={{
           color: '#BF3154',
           fontFamily: 'hwt-artz',
-          fontSize: '20px',
+          fontSize: '25px',
           fontStyle: 'normal',
           fontWeight: 700,
           lineHeight: 'normal',

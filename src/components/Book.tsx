@@ -25,8 +25,8 @@ const pag16Img = (n: number) => `/images/pag16_img${n}.png`;
 
 const BolaCaption = ({ tipo, color }: { tipo: string; color: string }) => (
   <span
-    className="inline-block rounded-lg border-2 bg-white px-3 py-1 text-sm font-bold uppercase text-[#4B4B4B] md:text-base"
-    style={{ borderColor: color }}
+    className="inline-block rounded-lg border-2 bg-white px-3 py-1 font-bold uppercase text-[#4B4B4B]"
+    style={{ borderColor: color, fontSize: '20px' }}
   >
     Bola de <span style={{ color }}>{tipo}</span>
   </span>
@@ -1981,7 +1981,7 @@ QUE UTILIZA O BAMBOLÊ NAS APRESENTAÇÕES." />
                   color: '#000000',
                   fontFamily: 'Ubuntu, sans-serif',
                   fontWeight: 300,
-                  fontSize: '18px',
+                  fontSize: '20px',
                   textAlign: 'center',
                   textTransform: 'uppercase',
                   lineHeight: 1.2,

@@ -25,7 +25,7 @@
 .chapter-content h4 {
   color: #00776E;
   font-family: 'hwt-artz', sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -38,7 +38,7 @@
   color: black;
   font-family: 'Ubuntu', 'sans-serif';
   text-align: justify;
-  font-size: 16px;
+  font-size: 21px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
@@ -53,6 +53,7 @@
 p,
 li {
   text-transform: uppercase;
+  font-size: 21px;
 }
 
 /* Conteúdo do modal do professor deve manter caixa normal */

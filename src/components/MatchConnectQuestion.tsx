@@ -73,7 +73,7 @@ function loadConnections(key: string | undefined): MatchConnection[] {
 function MatchConnectItemContent({ item }: { item: MatchConnectItem }) {
   if (item.label) {
     return (
-      <span className="px-2 text-center text-sm font-bold uppercase leading-snug text-[#832c87] md:text-base">
+      <span className="px-2 text-center font-bold uppercase leading-snug text-[#832c87]" style={{ fontSize: '20px' }}>
         {item.label}
       </span>
     );

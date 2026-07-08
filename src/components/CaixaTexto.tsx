@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import TagConteudoDigital from './TagConteudoDigital';
 
 interface CaixaTextoProps {
   title: ReactNode;
@@ -6,9 +7,10 @@ interface CaixaTextoProps {
   backgroundColor?: string;
   columns?: number;
   centered?: boolean;
+  tagDigital?: boolean;
 }
 
-function CaixaTexto({ title, children, backgroundColor, columns, centered }: CaixaTextoProps) {
+function CaixaTexto({ title, children, backgroundColor, columns, centered, tagDigital }: CaixaTextoProps) {
   const contentStyle: React.CSSProperties = {
     ...(columns && columns > 1 ? {
       // columnCount: columns,
@@ -26,6 +28,7 @@ function CaixaTexto({ title, children, backgroundColor, columns, centered }: Cai
       }}
       className="p-4 my-4"
     >
+      {tagDigital && <TagConteudoDigital />}
       <h4
         style={{
           color: '#BF3154',

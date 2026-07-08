@@ -795,6 +795,7 @@ PARA BRINCAR E SE DIVERTIR!`}
               </span>
             }
             centered
+            tagDigital
           >
             <BolaDeMeiaQuestion />
 
@@ -825,10 +826,11 @@ PARA BRINCAR E SE DIVERTIR!`}
             QUE TAL CONHECER OUTRA BRINCADEIRA COM BOLA DE MEIA? OUÇA
             A LEITURA DAS REGRAS QUE O(A) PROFESSOR(A) VAI FAZER.
           </p>
-          <CaixaTexto title=''>
+          <CaixaTexto title='' tagDigital>
             <div className="mb-4 indent-6">
               <CabriolaTituloInterativo />
             </div>
+            
             <p className="mb-4 indent-6">
               <strong>MATERIAL</strong>: BOLA DE MEIA
             </p>

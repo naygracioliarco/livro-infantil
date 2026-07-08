@@ -28,6 +28,7 @@ const validItems: BolaDeMeiaItemId[] = ['pag_img1', 'pag_img2', 'pag_img3', 'pag
 
 function BolaDeMeiaQuestion() {
   const [bolaDropMap, setBolaDropMap] = useState<Partial<Record<BolaDropZoneId, BolaDeMeiaItemId>>>({});
+  const [selectedItem, setSelectedItem] = useState<BolaDeMeiaItemId | null>(null);
 
   useEffect(() => {
     try {
@@ -63,10 +64,7 @@ function BolaDeMeiaQuestion() {
     event.dataTransfer.setData('text/plain', itemId);
   };
 
-  const handleBolaDrop = (event: DragEvent<HTMLDivElement>, zoneId: BolaDropZoneId) => {
-    event.preventDefault();
-    const itemId = event.dataTransfer.getData('text/plain') as BolaDeMeiaItemId;
-
+  const placeItemInZone = (zoneId: BolaDropZoneId, itemId: BolaDeMeiaItemId) => {
     if (!bolaDeMeiaItems.some((item) => item.id === itemId)) {
       return;
     }
@@ -85,12 +83,34 @@ function BolaDeMeiaQuestion() {
     });
   };
 
+  const handleBolaDrop = (event: DragEvent<HTMLDivElement>, zoneId: BolaDropZoneId) => {
+    event.preventDefault();
+    const itemId = event.dataTransfer.getData('text/plain') as BolaDeMeiaItemId;
+    placeItemInZone(zoneId, itemId);
+    setSelectedItem(null);
+  };
+
   const handleBolaRemoveFromZone = (zoneId: BolaDropZoneId) => {
     setBolaDropMap((prev) => {
       const updated: Partial<Record<BolaDropZoneId, BolaDeMeiaItemId>> = { ...prev };
       delete updated[zoneId];
       return updated;
     });
+  };
+
+  const handleSelectItem = (itemId: BolaDeMeiaItemId) => {
+    setSelectedItem((prev) => (prev === itemId ? null : itemId));
+  };
+
+  const handleZoneClick = (zoneId: BolaDropZoneId) => {
+    if (selectedItem) {
+      placeItemInZone(zoneId, selectedItem);
+      setSelectedItem(null);
+      return;
+    }
+    if (bolaDropMap[zoneId]) {
+      handleBolaRemoveFromZone(zoneId);
+    }
   };
 
   const getBolaDropBorderClass = (zoneId: BolaDropZoneId) => {
@@ -116,18 +136,18 @@ function BolaDeMeiaQuestion() {
               key={zoneId}
               onDragOver={(event) => event.preventDefault()}
               onDrop={(event) => handleBolaDrop(event, zoneId)}
-              className={`h-36 rounded-3xl border-2 ${getBolaDropBorderClass(zoneId)} bg-[#F3F3F3] flex items-center justify-center p-2`}
+              onClick={() => handleZoneClick(zoneId)}
+              className={`h-36 rounded-3xl border-2 ${getBolaDropBorderClass(zoneId)} bg-[#F3F3F3] flex items-center justify-center p-2 cursor-pointer ${selectedItem ? 'ring-2 ring-[#832c87]/40' : ''}`}
             >
               {droppedItem ? (
                 <img
                   src={droppedItem.src}
                   alt={droppedItem.id}
-                  className="h-full object-contain cursor-pointer"
-                  onClick={() => handleBolaRemoveFromZone(zoneId)}
+                  className="h-full object-contain pointer-events-none"
                   title="Clique para remover"
                 />
               ) : (
-                <span className="text-sm text-[#808080]">Arraste aqui</span>
+                <span className="text-sm text-[#808080]">Arraste ou toque aqui</span>
               )}
             </div>
           );
@@ -149,18 +169,18 @@ function BolaDeMeiaQuestion() {
               <div
                 onDragOver={(event) => event.preventDefault()}
                 onDrop={(event) => handleBolaDrop(event, zoneId)}
-                className={`h-44 rounded-2xl border-2 ${getBolaDropBorderClass(zoneId)} bg-[#F3F3F3] flex items-center justify-center p-2`}
+                onClick={() => handleZoneClick(zoneId)}
+                className={`h-44 rounded-2xl border-2 ${getBolaDropBorderClass(zoneId)} bg-[#F3F3F3] flex items-center justify-center p-2 cursor-pointer ${selectedItem ? 'ring-2 ring-[#832c87]/40' : ''}`}
               >
                 {droppedItem ? (
                   <img
                     src={droppedItem.src}
                     alt={droppedItem.id}
-                    className="h-full object-contain cursor-pointer"
-                    onClick={() => handleBolaRemoveFromZone(zoneId)}
+                    className="h-full object-contain pointer-events-none"
                     title="Clique para remover"
                   />
                 ) : (
-                  <span className="text-sm text-[#808080]">Arraste aqui</span>
+                  <span className="text-sm text-[#808080]">Arraste ou toque aqui</span>
                 )}
               </div>
             </div>
@@ -168,7 +188,8 @@ function BolaDeMeiaQuestion() {
         })}
       </div>
       <div className="mb-2">
-        <p className="mb-3 font-semibold text-[#832c87]">Imagens para arrastar</p>
+        <p className="mb-1 font-semibold text-[#832c87]">Imagens para arrastar ou tocar</p>
+        <p className="mb-3 text-sm text-[#808080]">Toque em uma imagem para selecionar e depois toque no espaço onde quer colocá-la.</p>
         <div className="flex flex-wrap gap-3">
           {availableBolaItems.map((item) => (
             <img
@@ -177,7 +198,12 @@ function BolaDeMeiaQuestion() {
               alt={item.id}
               draggable
               onDragStart={(event) => handleBolaDragStart(event, item.id)}
-              className="w-24 h-24 object-contain border border-[#D1D5DB] rounded-xl bg-white p-1 cursor-grab active:cursor-grabbing"
+              onClick={() => handleSelectItem(item.id)}
+              className={`w-24 h-24 object-contain rounded-xl bg-white p-1 cursor-pointer transition ${
+                selectedItem === item.id
+                  ? 'border-2 border-[#832c87] ring-2 ring-[#832c87]/40'
+                  : 'border border-[#D1D5DB]'
+              }`}
             />
           ))}
         </div>
@@ -187,6 +213,7 @@ function BolaDeMeiaQuestion() {
         className="mt-4 px-4 py-2 rounded-lg bg-[#832c87] text-white text-sm font-medium"
         onClick={() => {
           setBolaDropMap({});
+          setSelectedItem(null);
           localStorage.removeItem(BOLA_DE_MEIA_STORAGE_KEY);
         }}
       >

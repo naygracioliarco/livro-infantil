@@ -106,12 +106,20 @@ ul.question-subitems li::marker {
 
 /* Botão do professor: força a cor roxa mesmo se o geral.css externo da plataforma
    definir o estilo laranja padrão com !important. */
-.professor-button {
+.professor-button:not(.mostrar-resposta-button) {
   background-color: #80298F !important;
   box-shadow: 0px 4px 0px rgb(106, 37, 118) !important;
 }
 
-.professor-button:hover {
+.professor-button:not(.mostrar-resposta-button):hover {
   background-color: rgb(106, 37, 118) !important;
   box-shadow: 0px 2px 0px rgb(106, 37, 118) !important;
+}
+
+/* Mesma visibilidade do botão do professor (controlada pelo geral.css da plataforma),
+   mas mantém o visual dos botões de revelar resposta. */
+.mostrar-resposta-button {
+  background-color: #fff !important;
+  box-shadow: none !important;
+  text-transform: none;
 }

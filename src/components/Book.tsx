@@ -21,6 +21,7 @@ import GameModal from './GameModal';
 import AreaDesenho from './AreaDesenho';
 import ContagemQuadrados from './ContagemQuadrados';
 import PalavrasBambolhe from './PalavrasBambolhe';
+import MostrarRespostaButton from './MostrarRespostaButton';
 const pag16Img = (n: number) => `/images/pag16_img${n}.png`;
 
 const BolaCaption = ({ tipo, color }: { tipo: string; color: string }) => (
@@ -1165,13 +1166,11 @@ PARA BRINCAR E SE DIVERTIR!`}
             <li>COM COLA COLORIDA, CONTORNE NA IMAGEM QUEM É O PEGADOR
               DA BRINCADEIRA. </li>
           </ul>
-          <button
-            type="button"
-            className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-5 py-2.5 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
+          <MostrarRespostaButton
+            className="ml-6"
+            showing={pag18ShowContorno}
             onClick={() => setPag18ShowContorno((v) => !v)}
-          >
-            {pag18ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta'}
-          </button>
+          />
           <p className="mb-4 indent-6">QUE TAL BRINCAR DE PEGA-PEGA COM OS COLEGAS? DECIDAM JUNTOS
             QUEM SERÁ O PEGADOR E DIVIRTAM-SE. DEPOIS, NO QUADRO ABAIXO,
             FAÇA UM DESENHO DESSE MOMENTO.</p>
@@ -1208,13 +1207,11 @@ PARA BRINCAR E SE DIVERTIR!`}
             <p className="text-[10px] text-slate-600 mt-2">SAE Digital
             </p>
           </div>
-          <button
-            type="button"
-            className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-4 py-2 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
+          <MostrarRespostaButton
+            className="ml-6 px-4 py-2"
+            showing={pag19ShowContorno}
             onClick={() => setPag19ShowContorno((v) => !v)}
-          >
-            {pag19ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta'}
-          </button>
+          />
           <p className="mb-4 indent-6">DEPOIS DE SE DIVERTIR BRINCANDO
             DE <strong>PEGA-PEGA SOMBRAS</strong>, QUE TAL
             CONHECER UM JOGO QUE TAMBÉM
@@ -1353,13 +1350,10 @@ PARA BRINCAR E SE DIVERTIR!`}
             HISTÓRIA <strong>GATO E RATO</strong>. DEPOIS, ESCREVA, COMO SOUBER, O NOME DOS
             ANIMAIS QUE APARECEM NAS ILUSTRAÇÕES ABAIXO.
           </p>
-          <button
-            type="button"
-            className="my-5 rounded-lg border-2 border-[#832c87] bg-white px-5 py-2.5 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
+          <MostrarRespostaButton
+            showing={pag21ShowResposta}
             onClick={() => setPag21ShowResposta((v) => !v)}
-          >
-            {pag21ShowResposta ? 'Voltar à imagem original' : 'Mostrar a resposta'}
-          </button>
+          />
           <div className="my-6">
             <ImageFillQuestion
               items={FILL_PAG21_ITEMS.map((item) =>
@@ -1756,13 +1750,11 @@ PARA BRINCAR E SE DIVERTIR!`}
             <p className="text-[10px] text-slate-600 mt-2">Shajamal,Tom,Ali/stock.adobe.com
             </p>
           </div>
-          <button
-            type="button"
-            className="my-5 ml-6 rounded-lg border-2 border-[#832c87] bg-white px-4 py-2 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
+          <MostrarRespostaButton
+            className="ml-6 px-4 py-2"
+            showing={pag25ShowContorno}
             onClick={() => setPag25ShowContorno((v) => !v)}
-          >
-            {pag25ShowContorno ? 'Voltar à imagem original' : 'Mostrar a resposta'}
-          </button>
+          />
           <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
             <p className="indent-6 md:flex-1">
               CONTE QUANTOS OBJETOS VOCÊ PINTOU.

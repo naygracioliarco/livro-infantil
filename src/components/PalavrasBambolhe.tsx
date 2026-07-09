@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import MostrarRespostaButton from './MostrarRespostaButton';
 
 const WORDS = [
   { id: 'cabeca', label: 'CABEÇA', color: '#832c87' },
@@ -31,13 +32,12 @@ function PalavrasBambolhe() {
         ))}
       </div>
 
-      <button
-        type="button"
-        className="my-5 rounded-lg border-2 border-[#832c87] bg-white px-5 py-2.5 text-sm font-medium text-[#832c87] transition hover:bg-[#faf8fc]"
+      <MostrarRespostaButton
+        showing={showResposta}
         onClick={() => setShowResposta((v) => !v)}
-      >
-        {showResposta ? 'Ocultar resposta' : 'Mostrar a resposta'}
-      </button>
+        showLabel="Mostrar a resposta"
+        hideLabel="Ocultar resposta"
+      />
     </div>
   );
 }
